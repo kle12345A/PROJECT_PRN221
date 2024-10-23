@@ -1,0 +1,115 @@
+﻿@page
+@model ShoeShop.Areas.Admin.Pages.user.EditModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Edit User";
+    Layout = "~/Areas/Admin/Pages/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Edit User Details</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="User.Id" />
+
+                            <div class="form-group">
+                                <label asp-for="User.Name" class="control-label"></label>
+                                <input asp-for="User.Name" class="form-control" />
+                                <span asp-validation-for="User.Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="User.UserName" class="control-label"></label>
+                                <input asp-for="User.UserName" class="form-control" />
+                                <span asp-validation-for="User.UserName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="User.Password" class="control-label"></label>
+                                <input asp-for="User.Password" type="text" class="form-control" />
+                                <span asp-validation-for="User.Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="User.Address" class="control-label"></label>
+                                <input asp-for="User.Address" class="form-control" />
+                                <span asp-validation-for="User.Address" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="User.Email" class="control-label"></label>
+                                <input asp-for="User.Email" type="email" class="form-control" />
+                                <span asp-validation-for="User.Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="User.Phone" class="control-label"></label>
+                                <input asp-for="User.Phone" class="form-control" />
+                                <span asp-validation-for="User.Phone" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ImageFile" class="control-label">Upload Image</label>
+                                <input asp-for="ImageFile" type="file" class="form-control" onchange="previewImage(event)" />
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                <img id="imagePreview" src="#" alt="Image Preview" class="mt-2" style="display:none; max-width: 100%; height: auto;" />
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="User.RoleId" class="control-label"></label>
+                                <select asp-for="User.RoleId" class="form-control" asp-items="ViewBag.RoleId"></select>
+                                <span asp-validation-for="User.RoleId" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="User.CreateDate" class="control-label"></label>
+                                <input asp-for="User.CreateDate" class="form-control" readonly />
+                                <span asp-validation-for="User.CreateDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="User.UpdateDate" class="control-label"></label>
+                                <input asp-for="User.UpdateDate" class="form-control" />
+                                <span asp-validation-for="User.UpdateDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Save Changes" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script>
+            function previewImage(event) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('imagePreview');
+                    output.src = reader.result;
+                    output.style.display = 'block';
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        </script>
+    }
+}

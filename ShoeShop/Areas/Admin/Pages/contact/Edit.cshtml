@@ -1,0 +1,98 @@
+﻿@page
+@model ShoeShop.Areas.Admin.Pages.contact.EditModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Edit Contact";
+    Layout = "~/Areas/Admin/Pages/_AdminLayout.cshtml";
+}
+
+<!-- Content Header -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+              
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-page="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Edit Contact</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Contact Information</h4>
+                <hr />
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Contact.Id" />
+                    <div class="form-group">
+                        <label asp-for="Contact.Name" class="control-label"></label>
+                        <input asp-for="Contact.Name" class="form-control" />
+                        <span asp-validation-for="Contact.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contact.Phone" class="control-label"></label>
+                        <input asp-for="Contact.Phone" class="form-control" />
+                        <span asp-validation-for="Contact.Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contact.Address" class="control-label"></label>
+                        <input asp-for="Contact.Address" class="form-control" />
+                        <span asp-validation-for="Contact.Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contact.Content" class="control-label"></label>
+                        <input asp-for="Contact.Content" class="form-control" />
+                        <span asp-validation-for="Contact.Content" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contact.CreateDate" class="control-label"></label>
+                        <input asp-for="Contact.CreateDate" class="form-control" readonly />
+                        <span asp-validation-for="Contact.CreateDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contact.UpdateDate" class="control-label"></label>
+                        <input asp-for="Contact.UpdateDate" class="form-control" readonly />
+                        <span asp-validation-for="Contact.UpdateDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contact.AdminCreate" class="control-label"></label>
+                        <input asp-for="Contact.AdminCreate" class="form-control" readonly />
+                        <span asp-validation-for="Contact.AdminCreate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contact.AdminUpdate" class="control-label"></label>
+                        <input asp-for="Contact.AdminUpdate" class="form-control" readonly />
+                        <span asp-validation-for="Contact.AdminUpdate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Back to List -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

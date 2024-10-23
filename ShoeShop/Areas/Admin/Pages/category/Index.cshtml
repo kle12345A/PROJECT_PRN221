@@ -1,0 +1,105 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ShoeShop.Areas.Admin.Pages.category.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Pages/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+               
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Categories</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Manager Categories</h3>
+                        
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <p>
+                            <a asp-area="Admin" asp-page="/Category/Create">Create New Category</a>
+                        </p>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th style="width:10%;">Icon</th>
+                                    <th style="width:28%;">Description</th>
+                                    <th style="width:28%;">Note</th>
+                                    <th style="width:30%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Category != null && Model.Category.Count > 0)
+                                {
+                                    int index = 1;
+                                    foreach (var item in Model.Category)
+                                    {
+                                        <tr>
+                                            <td>@index</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(item.Icon))
+                                                {
+                                                    <img class="icon-image" src="@item.Icon" alt="Category Icon" />
+                                                }
+                                            </td>
+                                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                                            <td>
+                                                <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a> |
+                                                <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a> |
+                                                
+                                            </td>
+                                        </tr>
+                                        index++;
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6" class="text-center">No categories available.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table><br />
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<style>
+    .icon-image {
+        max-width: 50px;
+        max-height: 50px;
+        object-fit: contain;
+    }
+</style>

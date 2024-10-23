@@ -1,0 +1,94 @@
+﻿@page
+@model ShoeShop.Areas.Admin.Pages.news.EditModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Pages/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+             
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-page="Index">News List</a></li>
+                    <li class="breadcrumb-item active">Edit</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Edit News</h4>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="News.Id" />
+
+                            <div class="form-group">
+                                <label asp-for="News.Title" class="control-label"></label>
+                                <input asp-for="News.Title" class="form-control" />
+                                <span asp-validation-for="News.Title" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="News.Description" class="control-label"></label>
+                                <input asp-for="News.Description" class="form-control" />
+                                <span asp-validation-for="News.Description" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ImageFile" class="control-label">Upload Image</label>
+                                <input asp-for="ImageFile" type="file" class="form-control" />
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                <img id="imagePreview" src="#" alt="Image Preview" class="mt-2" style="display:none; max-width: 100%; height: auto;" />
+                            </div>
+
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="News.Status" />
+                                    @Html.DisplayNameFor(model => model.News.Status)
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <div>
+            <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<script>
+    document.querySelector('input[type="file"]').addEventListener('change', function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    });
+</script>

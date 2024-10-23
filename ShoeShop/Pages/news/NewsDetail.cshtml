@@ -1,0 +1,48 @@
+﻿@page
+@model ShoeShop.Pages.news.NewsDetailModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/news-detail.css">
+
+<div class="outer-container-news-detail">
+    <div class="filter-news-detail">
+        <div class="nav">
+            <p>
+                <a href="#">Trang chủ</a> >
+                <a href="#">Tin tức</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="main-news-detail">
+        <div class="row">
+            <div class="col-md-8">
+                <h5>@Model.News.Title</h5>
+                <p style="text-align: justify;">
+                    @Model.News.Description
+                </p>
+                <img src="@Model.News.Image" style="width: 100%;" alt="Hình ảnh tin tức" />
+            </div>
+            <div class="col-md-4">
+                <h5 class="mb-4" style="font-weight: bold; text-decoration: underline; text-decoration-color: #CFB492;">BÀI VIẾT MỚI</h5>
+                @foreach (var least in Model.NewsLeast)
+                {
+                    <div class="new-article-detail">
+                        <a style="text-decoration: none;" href="@Url.Page("NewsDetail", new { id = least.Id })">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="@least.Image" style="width: 100%;" alt="Bài viết mới" />
+                                </div>
+                                <div class="col-md-7" style="font-size: 10px;">
+                                    <p>@least.Title</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@page
+@model ShoeShop.Areas.Admin.Pages.contact.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Contact Management";
+    Layout = "~/Areas/Admin/Pages/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-page="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Contacts</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Contacts List</h3>
+                        
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.Contact[0].Name)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Contact[0].Phone)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Contact[0].Address)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Contact[0].Content)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Contact[0].CreateDate)</th>
+                                    
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Contact)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Content)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                                       
+                                        <td>
+                                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                                            <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

@@ -1,0 +1,69 @@
+﻿@page
+@model ShoeShop.Areas.Admin.Pages.user.DetailsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "User Details";
+    Layout = "~/Areas/Admin/Pages/_AdminLayout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>User Information</h3>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.User.Name)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.User.Name)</dd>
+
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.User.UserName)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.User.UserName)</dd>
+
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.User.Password)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.User.Password)</dd>
+
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.User.Address)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.User.Address)</dd>
+
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.User.Email)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.User.Email)</dd>
+
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.User.Phone)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.User.Phone)</dd>
+
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.User.Avata)</dt>
+                            <dd class="col-sm-10"><img src="@Model.User.Avata" alt="Alternate"style="width:30%;" /></dd>
+
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.User.CreateDate)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.User.CreateDate)</dd>
+
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.User.UpdateDate)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.User.UpdateDate)</dd>
+
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.User.Role)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.User.Role.Name)</dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-page="./Edit" asp-route-id="@Model.User?.Id" class="btn btn-warning">Edit</a> |
+                        <a asp-page="./Index" class="btn btn-primary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,38 @@
+﻿@page
+@model ShoeShop.Pages.news.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="outer-container" style="background-color: #f2f5f9; padding-left: 14%; padding-right: 14%;">
+    <div class="contain" style="background-color: white;">
+        <div class="main-news">
+            <h3 class="news-title">TIN TỨC</h3>
+            <div class="row">
+                @if (Model.News != null && Model.News.Count > 0)
+                {
+                    @foreach (var newItem in Model.News)
+                    {
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <a style="text-decoration:none;" asp-page="/news/NewsDetail" asp-route-id="@newItem.Id">
+                                <div class="news-card">
+                                    <img src="@newItem.Image" class="card-img-top" alt="@newItem.Title">
+                                    <div class="card-body">
+                                        <p style="font-size: 15px; font-weight: bold;" class="card-title">@newItem.Title</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Không có tin tức nào để hiển thị.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

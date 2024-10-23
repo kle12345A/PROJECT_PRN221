@@ -1,0 +1,121 @@
+﻿@page
+@model ShoeShop.Areas.Admin.Pages.product.ProductManagerModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Areas/Admin/Pages/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Manager Products</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+
+                        <p>
+                            <a asp-area="Admin" asp-page="/product/CreateProduct">Create New</a>
+                        </p>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                   
+                                    <th>
+                                        Title
+                                    </th>
+                                    <th style="width:10%;">
+                                        Image
+                                    </th>
+                                    <th style="width:28%;">
+                                        Content
+                                    </th>
+                                    <th style="width:28%;">
+                                        Description
+                                    </th>
+                                    <th>
+                                        PriceOld
+                                    </th>
+                                    <th>
+                                        PriceNew
+                                    </th>
+                                   
+                                    <th style="width:40%;">Action</th>
+                                </tr>
+                            </thead>
+                            @if (Model.Products != null && Model.Products.Count > 0)
+                            {
+                                int index = 1;
+                                foreach (var product in Model.Products)
+                                {
+                                    <tr>
+                                        <td>@product.Id</td>
+                                        <td>@product.Title</td>
+                                        <td>
+                                            <img class="icon-image" src="@product.Image" />
+                                        </td>
+                                        <td>@product.Content</td>
+                                        <td>@product.Description</td>
+
+
+                                        
+                                        <td>@product.PriceOld?.ToString("C")</td>
+                                        <td>@product.PriceNew?.ToString("C")</td>
+                                        <td>
+                                            <a asp-area="Admin" asp-page="/Product/UpdateProduct" asp-route-id="@product.Id" class="btn btn-warning">Sửa</a>
+                                            <a asp-area="Admin" asp-page="/Product/DeleteProduct" asp-route-id="@product.Id" class="btn btn-danger">Xóa</a>
+                                            <a asp-area="Admin" asp-page="/Product/DetailProduct" asp-route-id="@product.Id" class="btn btn-primary">Chi tiết</a>
+
+                                        </td>
+                                    </tr>
+                                    index++;
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5">Không có sản phẩm nào.</td>
+                                </tr>
+                            }
+
+                        </table><br />
+                       
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<style>
+    .icon-image {
+        width: 100%;
+    }
+
+</style>

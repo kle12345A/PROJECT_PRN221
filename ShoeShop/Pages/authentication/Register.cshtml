@@ -1,0 +1,46 @@
+﻿@page
+@model ShoeShop.Pages.authentication.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+
+<div class="container mt-5">
+    <h1>Register</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form id="registerForm" method="post">
+                <h2>Create a new account.</h2>
+                <hr />
+                <div class="form-floating mb-3">
+                    <input type="email" id="email" class="form-control" placeholder="name@example.com" required />
+                    <label for="email">Email</label>
+                    <div class="text-danger" id="emailError"></div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" id="password" class="form-control" placeholder="Password" required />
+                    <label for="password">Password</label>
+                    <div class="text-danger" id="passwordError"></div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required />
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="text-danger" id="confirmPasswordError"></div>
+                </div>
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            </form>
+        </div>
+
+        <div class="col-md-6 offset-md-2">
+            <section>
+                <h3>Use another service to register.</h3>
+                <hr />
+                <p>No external authentication services are configured.</p>
+                <button class="btn btn-primary mb-2">Log in with Google</button>
+                <button class="btn btn-primary mb-2">Log in with Facebook</button>
+            </section>
+        </div>
+    </div>
+</div>

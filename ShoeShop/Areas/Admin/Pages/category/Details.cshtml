@@ -1,0 +1,107 @@
+﻿@page
+@model ShoeShop.Areas.Admin.Pages.category.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Pages/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            
+        </div>
+        <div class="col-sm-6">
+            @* You can add breadcrumb navigation here if needed *@
+        </div>
+    </div>
+</div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Details of Category</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Category.Title)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Category.Title)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Category.Icon)
+                            </dt>
+                            <dd class="col-sm-10">
+                                <img src="@Model.Category.Icon" class="icon-image" style="width:50%;" />
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Category.Description)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Category.Description)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Category.Orders)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Category.Orders)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Category.Note)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Category.Note)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Category.CreateDate)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Category.CreateDate)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Category.UpdateDate)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Category.UpdateDate)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Category.AdminCreate)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Category.AdminCreate)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Category.AdminUpdate)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Category.AdminUpdate)
+                            </dd>
+                        </dl>
+                        <a asp-page="./Edit" asp-route-id="@Model.Category?.Id">Edit</a> |
+                        <a asp-page="./Index">Back to List</a>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+<style>
+    .icon-image {
+        width: 100%;
+    }
+</style>

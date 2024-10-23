@@ -1,0 +1,94 @@
+﻿@page
+@model ShoeShop.Areas.Admin.Pages.user.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Pages/_AdminLayout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>User Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <p>
+                            <a asp-area="Admin" asp-page="/user/Create" class="btn btn-primary">Create New User</a>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Avatar</th>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Role</th>
+                                    <th style="width:30%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Users != null && Model.Users.Count > 0)
+                                {
+                                    int index = 1;
+                                    foreach (var user in Model.Users)
+                                    {
+                                        <tr>
+                                            <td>@index</td>
+                                            <td>@user.Name</td>
+                                            <td>
+                                                <img class="icon-image" src="@user.Avata"  />
+                                            </td>
+
+                                            <td>@user.UserName</td>
+                                            <td>@user.Email</td>
+                                            <td>@user.Phone</td>
+                                            <td>@user.Address</td>
+                                            <td>@user.Role.Name</td>
+                                            <td>
+                                                <a asp-area="Admin" asp-page="/user/Edit" asp-route-id="@user.Id" class="btn btn-warning">Edit</a>
+                                                <a asp-area="Admin" asp-page="/user/Delete" asp-route-id="@user.Id" class="btn btn-danger">Delete</a>
+                                                <a asp-area="Admin" asp-page="/user/Details" asp-route-id="@user.Id" class="btn btn-primary">Details</a>
+                                            </td>
+                                        </tr>
+                                        index++;
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="8">No users found.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .icon-image {
+        width: 100%;
+    }
+</style>

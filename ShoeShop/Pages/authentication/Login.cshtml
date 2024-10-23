@@ -1,0 +1,43 @@
+﻿@page
+@model ShoeShop.Pages.authentication.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5">
+    <h1>Login</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <h2>Sign in to your account.</h2>
+                <hr />
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="alert alert-danger">@Model.ErrorMessage</div>
+                }
+                <div class="form-floating mb-3">
+                    <input asp-for="Users.Email" class="form-control" placeholder="name@example.com" required />
+                    <label asp-for="Users.Email">Email</label>
+                    <span class="text-danger" asp-validation-for="Users.Email"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Users.Password" type="password" class="form-control" placeholder="Password" required />
+                    <label asp-for="Users.Password">Password</label>
+                    <span class="text-danger" asp-validation-for="Users.Password"></span>
+                </div>
+                <a asp-page="/authentication/Register">Register here!!!</a>
+                <button type="submit" class="w-100 btn btn-lg btn-primary">Login</button>
+            </form>
+        </div>
+
+        <div class="col-md-6 offset-md-2">
+            <section>
+                <h3>Use another service to login.</h3>
+                <hr />
+                <button class="btn btn-primary mb-2">Log in with Google</button>
+                <button class="btn btn-primary mb-2">Log in with Facebook</button>
+            </section>
+        </div>
+    </div>
+</div>

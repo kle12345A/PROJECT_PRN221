@@ -1,0 +1,20 @@
+﻿@page
+@model ShoeShop.Pages.product.DetailsModel
+@{
+	ViewData["Title"] = "detail";
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<div class="row">
+	
+	<div class="col-md-6">
+		<img src="@Model.Product.Image" alt="Nike" class="detail-product-image" />
+	</div>
+	<div class="col-md-6 detail-product-info">
+		<h3 class="detail-product-title">@Model.Product.Title</h3>
+		<p class="detail-product-price">Price: @Model.Product.PriceNew</p>
+		<p class="detail-product-description">@Model.Product.Content</p>
+		<label>Quantity:</label>
+		<input type="number" class="detail-quantity-input" />
+		<button class="btn btn-primary detail-add-to-cart">Add to cart</button>
+	</div>
+</div>

@@ -1,0 +1,170 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+#carouselExampleControls {
+    height: 400px;
+    overflow: hidden;
+}
+
+    #carouselExampleControls .carousel-inner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+.product-image {
+    height: 200px; 
+    width: 100%;
+    object-fit: cover; 
+}
+.product-most{
+    padding-top:5%;
+    padding-bottom:5%;
+}
+
+.text-head {
+    padding-bottom: 5%;
+}
+.about-section {
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+}
+#myCustomCarousel {
+    height: 48px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  
+    background-size: 100%;
+    border-radius: 50%; 
+}
+.main-news h4 {
+    font-weight: bold;
+    padding-left: 3%; 
+    margin-bottom: 4%; 
+    padding-top: 4%;
+    color: #191d3d;
+    text-decoration: underline;
+    text-decoration-color: #BD945F;
+    text-decoration-thickness: 6px;
+}
+.detail-product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+
+
+.detail-product-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.detail-product-price {
+    font-size: 20px;
+    color: #28a745;
+    margin: 10px 0; 
+}
+
+.detail-product-description {
+    font-size: 16px; 
+    color: #555; 
+    margin-bottom: 20px; 
+}
+
+.detail-quantity-input {
+    width: 60px;
+    margin-right: 10px; 
+}
+
+.detail-add-to-cart {
+    background-color: #007bff; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+    .detail-add-to-cart:hover {
+        background-color: #0056b3;
+    }
+.news-title {
+    font-weight: bold;
+    text-align: center;
+}
+
+.news-card {
+    width: 80%;
+    height: 400px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border: 1px solid #ccc; 
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
+}
+
+    .news-card img {
+        height: 60%;
+        object-fit: cover;
+    }
+.outer-container-news-detail {
+    background-color: #F3F3F3;
+    padding-left: 14%;
+    padding-right: 14%;
+    padding-top: 50px;
+}
+
+.main-news-detail {
+    background-color: white;
+    margin-bottom: 50px;
+    padding: 5%;
+}
+
+    .main-news-detail h5 {
+        font-weight: bold;
+        color: #CFB492;
+    }
+
+.new-article-detail {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+    .new-article-detail h5 {
+        font-size: 1.2rem;
+    }
+
+    .new-article-detail img {
+        max-width: 100%;
+    }
+
+.filter-news-detail p a {
+    margin-right: 20px;
+    text-decoration: none;
+    margin-left: 10px;
+    color: #CFB492;
+}
