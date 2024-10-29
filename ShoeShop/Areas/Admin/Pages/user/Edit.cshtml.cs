@@ -30,8 +30,6 @@ namespace ShoeShop.Areas.Admin.Pages.user
         [BindProperty]
         public User User { get; set; } = default!;
 
-        [BindProperty]
-        public IFormFile ImageFile { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -56,27 +54,10 @@ namespace ShoeShop.Areas.Admin.Pages.user
             {
                 return Page();
             }
-            if (ImageFile != null)
-            {
-                var fileName = Path.GetFileName(ImageFile.FileName);
-                var uploadPath = Path.Combine(_environment.WebRootPath, "Image", "user");
-
-                if (!Directory.Exists(uploadPath))
-                {
-                    Directory.CreateDirectory(uploadPath);
-                }
-
-                var filePath = Path.Combine(uploadPath, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await ImageFile.CopyToAsync(stream);
-                }
-
-                User.Avata = $"/Image/user/{fileName}";
-            }
+            
 
             _context.Attach(User).State = EntityState.Modified; 
+            User.UpdateDate = DateTime.Now;
 
             try
             {

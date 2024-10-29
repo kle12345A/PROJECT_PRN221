@@ -15,5 +15,7 @@ namespace BusinessObject
         Task UpdateAsync(T entity);
         Task<bool> DeleteAsync(int id);
         Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+        IQueryable<T> GetQuery();
+        IQueryable<T> GetQuery(Expression<Func<T, bool>> where);
     }
 }

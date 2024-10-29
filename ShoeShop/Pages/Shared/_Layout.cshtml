@@ -1,4 +1,4 @@
-﻿@using DataAccess.Models
+﻿    @using DataAccess.Models
 @using System.Text.Json
 
 <!DOCTYPE html>
@@ -57,7 +57,7 @@
                         <a asp-page="/authentication/login">Login</a>
                     }
 
-                    <a href="/Cart" class="text-dark" aria-label="Shopping Cart">
+                    <a asp-page="/Cart/Index" class="text-dark" aria-label="Shopping Cart">
                         <i class="fa-solid fa-cart-shopping" style="font-size: 1.5rem;"></i>
                     </a>
                 </div>

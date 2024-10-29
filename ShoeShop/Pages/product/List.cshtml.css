@@ -1,0 +1,35 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+.card img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+h5 a {
+    text-decoration: none;
+}
+
+.fillter p {
+    margin-top: 4%;
+    margin-left: 14%;
+}
+
+    .fillter p a {
+        margin-right: 20px;
+        text-decoration: none;
+        margin-left: 10px;
+        color: black;
+    }
+
+.btn-secondary {
+    color: black;
+    background-color: white;
+    border-color: #6c757d;
+}

@@ -2,6 +2,7 @@
 using DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace ShoeShop.Pages
 {
@@ -19,7 +20,10 @@ namespace ShoeShop.Pages
 
         public async Task OnGetAsync()
         {
-            var products = await _productService.GetAllAsync(); 
+            var products = await _productService.GetQuery()
+                                           .OrderByDescending(x => x.Id)
+                                           .Take(4)
+                                           .ToListAsync();
             ViewData["Products"] = products;
         }
 

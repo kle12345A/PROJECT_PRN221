@@ -1,5 +1,4 @@
-﻿
-@page
+﻿@page
 @model ShoeShop.Areas.Admin.Pages.product.CreateProductModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
@@ -11,12 +10,10 @@
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
-            <div class="col-sm-6">
-               
-            </div>
+            <div class="col-sm-6"></div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                  @*   <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    @* <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a asp-action="GetAllProducts">List Products</a></li>
                     <li class="breadcrumb-item active">Add New Product</li> *@
                 </ol>
@@ -51,12 +48,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Product.Description" class="control-label"></label>
-                                        <input asp-for="Product.Description" class="form-control" />
+                                        <textarea asp-for="Product.Description" class="form-control" rows="3"></textarea>
                                         <span asp-validation-for="Product.Description" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Product.Content" class="control-label"></label>
-                                        <input asp-for="Product.Content" class="form-control" />
+                                        <textarea asp-for="Product.Content" class="form-control" rows="5"></textarea>
                                         <span asp-validation-for="Product.Content" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -76,21 +73,9 @@
                                         <input asp-for="Product.PriceNew" class="form-control" />
                                         <span asp-validation-for="Product.PriceNew" class="text-danger"></span>
                                     </div>
-                                    <div class="form-group">
-                                        <label asp-for="Product.UpdateDate" class="control-label"></label>
-                                        <input asp-for="Product.UpdateDate" class="form-control" />
-                                        <span asp-validation-for="Product.UpdateDate" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="Product.AdminCreate" class="control-label"></label>
-                                        <input asp-for="Product.AdminCreate" class="form-control" />
-                                        <span asp-validation-for="Product.AdminCreate" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="Product.AdminUpdate" class="control-label"></label>
-                                        <input asp-for="Product.AdminUpdate" class="form-control" />
-                                        <span asp-validation-for="Product.AdminUpdate" class="text-danger"></span>
-                                    </div>
+                                   
+                                    
+                                  
                                     <div class="form-group">
                                         <input type="submit" value="Create" class="btn btn-primary" />
                                     </div>
@@ -131,6 +116,3 @@
         reader.readAsDataURL(event.target.files[0]);
     }
 </script>
-
-
-

@@ -40,6 +40,12 @@ namespace ShoeShop.Areas.Admin.Pages.product
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var userJson = HttpContext.Session.GetString("User");
+            if (userJson != null)
+            {
+                var user = System.Text.Json.JsonSerializer.Deserialize<dynamic>(userJson);
+                Product.AdminCreate = user?.Name;
+            }
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -62,12 +68,11 @@ namespace ShoeShop.Areas.Admin.Pages.product
                     await ImageFile.CopyToAsync(stream);
                 }
 
-           
+              
                 Product.Image = $"/Image/product/{fileName}";
             }
 
-            Product.UpdateDate = DateTime.Now;
-
+                 Product.CreateDate = DateTime.Now;
             await _productService.AddAsync(Product);
 
             return RedirectToPage("ProductManager");

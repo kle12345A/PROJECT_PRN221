@@ -287,4 +287,7 @@ C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\Microsoft.As
 C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\ShoeShop.sourcelink.json
 C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\ShoeShop.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\product\List.cshtml.rz.scp.css
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\cart\Index.cshtml.rz.scp.css

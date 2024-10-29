@@ -9,5 +9,6 @@ namespace BusinessObject.product
 {
     public interface IProductService : IBaseService<Product>
     {
+        IEnumerable<Product> GetProductsByCategoryId(int categoryId);
     }
 }

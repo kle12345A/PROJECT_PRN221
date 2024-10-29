@@ -54,6 +54,16 @@ namespace BusinessObject
             return await _baseRepository.GetByIdAsync(id);
         }
 
+        public IQueryable<T> GetQuery()
+        {
+            return _baseRepository.GetQuery(); 
+        }
+
+        public IQueryable<T> GetQuery(Expression<Func<T, bool>> where)
+        {
+            return _baseRepository.GetQuery(where); 
+        }
+
         public async Task UpdateAsync(T entity)
         {
             if (entity == null)

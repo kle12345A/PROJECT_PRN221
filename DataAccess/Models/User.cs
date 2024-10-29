@@ -13,12 +13,10 @@ namespace DataAccess.Models
 
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public string UserName { get; set; } = null!;
         public string Password { get; set; } = null!;
         public string? Address { get; set; }
         public string? Email { get; set; }
         public string? Phone { get; set; }
-        public string? Avata { get; set; }
         public int? RoleId { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }

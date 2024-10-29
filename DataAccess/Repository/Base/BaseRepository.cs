@@ -60,6 +60,17 @@ namespace DataAccess.Repository.Base
             return await _dbSet.FindAsync(id);
         }
 
+        public IQueryable<T> GetQuery()
+        {
+            return _dbSet; 
+        }
+
+      
+        public IQueryable<T> GetQuery(Expression<Func<T, bool>> where)
+        {
+            return _dbSet.Where(where); 
+        }
+
         // Lưu các thay đổi vào cơ sở dữ liệu
         public async Task SaveChangesAsync()
         {

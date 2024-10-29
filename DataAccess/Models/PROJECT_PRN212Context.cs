@@ -31,13 +31,11 @@ namespace DataAccess.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-
             {
                 var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
                 String ConnectionStr = config.GetConnectionString("MyContr");
                 optionsBuilder.UseSqlServer(ConnectionStr);
             }
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -100,13 +98,13 @@ namespace DataAccess.Models
             {
                 entity.Property(e => e.Address).HasMaxLength(255);
 
-                entity.Property(e => e.AdminCreate).HasMaxLength(100);
-
-                entity.Property(e => e.AdminUpdate).HasMaxLength(100);
-
                 entity.Property(e => e.CreateDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
+                    .IsFixedLength();
 
                 entity.Property(e => e.Name).HasMaxLength(100);
 
@@ -117,11 +115,17 @@ namespace DataAccess.Models
 
             modelBuilder.Entity<News>(entity =>
             {
-                entity.Property(e => e.Description).HasMaxLength(1000);
+                entity.Property(e => e.AdminCreate).HasMaxLength(100);
+
+                entity.Property(e => e.AdminUpdate).HasMaxLength(100);
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Image).HasMaxLength(255);
 
                 entity.Property(e => e.Title).HasMaxLength(100);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -173,8 +177,6 @@ namespace DataAccess.Models
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.Description).HasMaxLength(255);
-
                 entity.Property(e => e.Image).HasMaxLength(255);
 
                 entity.Property(e => e.PriceNew).HasColumnType("decimal(18, 2)");
@@ -200,8 +202,6 @@ namespace DataAccess.Models
             {
                 entity.Property(e => e.Address).HasMaxLength(255);
 
-                entity.Property(e => e.Avata).HasMaxLength(255);
-
                 entity.Property(e => e.CreateDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
@@ -215,8 +215,6 @@ namespace DataAccess.Models
                 entity.Property(e => e.Phone).HasMaxLength(15);
 
                 entity.Property(e => e.UpdateDate).HasColumnType("datetime");
-
-                entity.Property(e => e.UserName).HasMaxLength(100);
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Users)

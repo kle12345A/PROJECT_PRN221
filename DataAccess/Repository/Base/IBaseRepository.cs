@@ -17,6 +17,8 @@ namespace DataAccess.Repository.Base
         Task DeleteAsync(T entity);
         Task DeleteByIdAsync(int id);
         Task SaveChangesAsync();
+        IQueryable<T> GetQuery();
+        IQueryable<T> GetQuery(Expression<Func<T, bool>> where);
     }
     
     

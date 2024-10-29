@@ -12,3 +12,4 @@ C:\Users\Asus\source\repos\Project_Prn212\DataAccess\obj\Debug\net6.0\refint\Dat
 C:\Users\Asus\source\repos\Project_Prn212\DataAccess\obj\Debug\net6.0\DataAccess.pdb
 C:\Users\Asus\source\repos\Project_Prn212\DataAccess\obj\Debug\net6.0\DataAccess.genruntimeconfig.cache
 C:\Users\Asus\source\repos\Project_Prn212\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll
+C:\Users\Asus\source\repos\Project_Prn212\DataAccess\obj\Debug\net6.0\DataAccess.sourcelink.json

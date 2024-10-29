@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\Pages\\cart\\Index.cshtml.js",
+      "PackagePath": "staticwebassets\\Pages\\cart\\Index.cshtml.js"
+    },
+    {
       "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\ShoeShop.bundle.scp.css",
       "PackagePath": "staticwebassets\\ShoeShop.bundle.scp.css"
     },
@@ -53,8 +57,20 @@
       "PackagePath": "staticwebassets\\Image\\news\\nike-zoom-fly-6-8.webp"
     },
     {
+      "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\news\\tokyo-coach-the-dream.webp",
+      "PackagePath": "staticwebassets\\Image\\news\\tokyo-coach-the-dream.webp"
+    },
+    {
       "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\product\\AirZoom.png",
       "PackagePath": "staticwebassets\\Image\\product\\AirZoom.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\product\\NIKE+SB+CHECK+CNVS+(GS).png",
+      "PackagePath": "staticwebassets\\Image\\product\\NIKE+SB+CHECK+CNVS+(GS).png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\product\\NIKE+SB+ZOOM+BLAZER+LOW+PRO+GT.png",
+      "PackagePath": "staticwebassets\\Image\\product\\NIKE+SB+ZOOM+BLAZER+LOW+PRO+GT.png"
     },
     {
       "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\product\\Nike_1.jpg",

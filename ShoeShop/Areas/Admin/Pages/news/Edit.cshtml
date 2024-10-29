@@ -54,9 +54,32 @@
                                 <label asp-for="ImageFile" class="control-label">Upload Image</label>
                                 <input asp-for="ImageFile" type="file" class="form-control" />
                                 <span asp-validation-for="ImageFile" class="text-danger"></span>
-                                <img id="imagePreview" src="#" alt="Image Preview" class="mt-2" style="display:none; max-width: 100%; height: auto;" />
-                            </div>
 
+
+                                @if (!string.IsNullOrEmpty(Model.News.Image))
+                                {
+                                    <div class="mt-2">
+                                        <label>Current Image:</label>
+                                        <img src="@Model.News.Image" alt="Product Image" class="img-thumbnail" style="max-width: 200px;" />
+                                        <div class="mt-2">
+                                            <label>Image Link:</label>
+                                            <a href="@Model.News.Image" target="_blank">@Model.News.Image</a>
+                                        </div>
+                                    </div>
+                                    <!-- Trường ẩn lưu đường dẫn ảnh cũ -->
+                                    <input type="hidden" name="CurrentImage" value="@Model.News.Image" />
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="News.CreateDate" class="control-label"></label>
+                                <input asp-for="News.CreateDate" class="form-control" readonly/>
+                                <span asp-validation-for="News.CreateDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="News.AdminCreate" class="control-label"></label>
+                                <input asp-for="News.AdminCreate" class="form-control" readonly/>
+                                <span asp-validation-for="News.AdminCreate" class="text-danger"></span>
+                            </div>
                             <div class="form-group form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" asp-for="News.Status" />

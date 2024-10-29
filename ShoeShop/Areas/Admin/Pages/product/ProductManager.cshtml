@@ -77,8 +77,8 @@
 
 
                                         
-                                        <td>@product.PriceOld?.ToString("C")</td>
-                                        <td>@product.PriceNew?.ToString("C")</td>
+                                        <td> @string.Format("{0:#,##0}",@product.PriceOld)VND</td>
+                                        <td>@string.Format("{0:#,##0}",@product.PriceNew)VND</td>
                                         <td>
                                             <a asp-area="Admin" asp-page="/Product/UpdateProduct" asp-route-id="@product.Id" class="btn btn-warning">Sửa</a>
                                             <a asp-area="Admin" asp-page="/Product/DeleteProduct" asp-route-id="@product.Id" class="btn btn-danger">Xóa</a>

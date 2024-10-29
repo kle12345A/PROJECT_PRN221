@@ -44,9 +44,10 @@
 {
     <div style="display: flex; justify-content: space-between; align-items: flex-end;">
         <h4>@Model.CategoryNames[category.Key]</h4>
-        <h5 style="margin-bottom: 34px; margin-right:26px;">
-            <a >XEM TẤT CẢ</a>
-        </h5>
+            <h5 style="margin-bottom: 34px; margin-right:26px;">
+                <a asp-page="/product/List" asp-route-id="@category.Key">XEM TẤT CẢ</a>
+            </h5>
+
     </div>
     
     <div class="row">
@@ -58,10 +59,11 @@
                             <img src="@product.Image" class="card-img-top product-image" alt="@product.Title" />
                         <div class="card-body">
                             <p class="card-title " >@product.Title</p>
-                            <p class="card-text">Giá: @product.PriceNew VND</p>
-                            <a  style="text-decoration:none;">
-                                <i class="fa-solid fa-cart-shopping"></i>&nbsp;Mua hàng
-                            </a>
+                            <p class="card-text">Giá: @string.Format("{0:#,##0}", @product.PriceNew) VND</p>
+                                <a asp-page="/cart/Index" asp-page-handler="Add" asp-route-id="@product.Id" style="text-decoration:none;">
+                                    <i class="fa-solid fa-cart-shopping"></i>&nbsp;Mua hàng
+                                </a>
+
                         </div>
                     </a>
                 </div>
@@ -70,3 +72,6 @@
     </div>
 }
 </div>
+
+
+

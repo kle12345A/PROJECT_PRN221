@@ -25,7 +25,7 @@ namespace ShoeShop.Areas.Admin.Pages.news
         public News News { get; set; } = default!;
 
         [BindProperty]
-        public IFormFile ImageFile { get; set; }
+        public IFormFile? ImageFile { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -71,7 +71,20 @@ namespace ShoeShop.Areas.Admin.Pages.news
                 // Lưu đường dẫn ảnh vào thuộc tính của News
                 News.Image = $"/Image/news/{fileName}";
             }
+			else
+			{
+				News.Image = Request.Form["CurrentImage"];
+			}
+			var userJson = HttpContext.Session.GetString("UserSession");
+            if (userJson != null)
+            {
+                var userElement = System.Text.Json.JsonDocument.Parse(userJson).RootElement;
 
+                // Truy xuất giá trị của 'Name' từ JsonElement
+                var userName = userElement.GetProperty("Name").GetString();
+                News.AdminUpdate = userName;
+            }
+            News.UpdateDate = DateTime.Now;
 
             try
             {

@@ -12,7 +12,7 @@ namespace DataAccess.Models
         public string? Content { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
-        public string AdminCreate { get; set; } = null!;
-        public string? AdminUpdate { get; set; }
+        public bool? Status { get; set; }
+        public string? Email { get; set; }
     }
 }

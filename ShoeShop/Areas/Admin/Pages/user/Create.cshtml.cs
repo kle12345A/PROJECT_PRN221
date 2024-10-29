@@ -34,8 +34,8 @@ namespace ShoeShop.Areas.Admin.Pages.user
         [BindProperty]
         public User User { get; set; } = default!;
 
-        [BindProperty]
-        public IFormFile ImageFile { get; set; } // Thêm thuộc tính cho file ảnh
+        
+       
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -44,26 +44,8 @@ namespace ShoeShop.Areas.Admin.Pages.user
                 return Page();
             }
 
-            if (ImageFile != null) // Kiểm tra nếu có file ảnh
-            {
-                var fileName = Path.GetFileName(ImageFile.FileName);
-                var uploadPath = Path.Combine(_environment.WebRootPath, "Image", "user"); // Thay đổi đường dẫn đến thư mục user
 
-                if (!Directory.Exists(uploadPath))
-                {
-                    Directory.CreateDirectory(uploadPath);
-                }
-
-                var filePath = Path.Combine(uploadPath, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await ImageFile.CopyToAsync(stream);
-                }
-
-                User.Avata = $"/Image/user/{fileName}"; 
-            }
-
+            User.CreateDate = DateTime.Now;
 
             _context.Users.Add(User);
             await _context.SaveChangesAsync(); 

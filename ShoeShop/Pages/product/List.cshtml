@@ -1,0 +1,61 @@
+﻿@page
+@model ShoeShop.Pages.product.ListModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Pages/product/List.cshtml.css" />
+
+<div>
+    <div class="fillter">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="nav">
+                    <p>
+                        Chọn mức giá:
+                        <a asp-page="./List" asp-route-id="@Model.CategoryId" asp-route-price="0">Tất cả</a>
+                        <a asp-page="./List" asp-route-id="@Model.CategoryId" asp-route-price="5000000">Dưới 5 triệu</a>
+                        <a asp-page="./List" asp-route-id="@Model.CategoryId" asp-route-price="10000000">5-10 triệu</a>
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center align-items-center pt-3">
+                <form method="get" asp-page="./List">
+                    <input type="hidden" name="id" value="@Model.CategoryId" />
+                    <input type="text" name="searchTerm" placeholder="Tìm kiếm theo tên sản phẩm..." class="form-control me-2" />
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </form>
+            </div>
+
+
+        
+        </div>
+    </div>
+
+        <!-- Main-news 1 -->
+        <div class="main-news" style="background-color: white; margin-bottom: 50px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                <h4>@Model.CategoryName</h4>
+            </div>
+            <div class="row">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-md-3">
+                        <div class="card">
+                            <a asp-page="/Product/Details" asp-route-id="@product.Id" style="text-decoration: none; color: inherit;">
+                                <img src="@product.Image" class="card-img-top product-image" alt="@product.Title" />
+                                <div class="card-body">
+                                    <p class="card-title">@product.Title</p>
+                                    <p class="card-text">Giá: @product.PriceNew VND</p>
+                                    <a style="text-decoration:none;">
+                                        <i class="fa-solid fa-cart-shopping"></i>&nbsp;Mua hàng
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+</div>
