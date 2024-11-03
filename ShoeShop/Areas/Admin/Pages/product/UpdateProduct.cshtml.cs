@@ -53,6 +53,12 @@ namespace ShoeShop.Areas.Admin.Pages.product
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var userJson = HttpContext.Session.GetString("User");
+            if (userJson != null)
+            {
+                var user = System.Text.Json.JsonSerializer.Deserialize<dynamic>(userJson);
+                Product.AdminUpdate = user?.Name;
+            }
             if (!ModelState.IsValid)
             {
                 return Page();

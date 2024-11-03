@@ -291,3 +291,4 @@ C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\ShoeShop.sou
 C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\ShoeShop.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\product\List.cshtml.rz.scp.css
 C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\cart\Index.cshtml.rz.scp.css
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\cart\Thanks.cshtml.rz.scp.css

@@ -28,8 +28,9 @@
                                         @* <button type="submit" class="btn qty_btn increase" name="quantity" value="@item.Quantity + 1"><i class="fa fa-plus"></i></button> *@
                                         <button type="submit" class="btn update">Cập nhật</button>
                                     </div>
-                                    <p>Giá: <span>@string.Format("{0:#,##0}", item.Price)</span> VND</p>
-                                    <p>Thành tiền: <span>@string.Format("{0:#,##0}", item.Total)</span> VND</p>
+                                    <p>Giá: <span class="item-price">@string.Format("{0:#,##0}", item.Price)</span> VND</p>
+                                    <p>Thành tiền: <span class="item-total">@string.Format("{0:#,##0}", item.Total)</span> VND</p>
+
                                 </form>
                             </div>
 
@@ -84,7 +85,10 @@
                         </span> VND
                     </div>
                     <div class="group-btn">
-                        <a asp-page="/Cart/Checkout" class="btn">Đặt hàng ngay</a>
+                        <form method="post" asp-page-handler="Checkout" class="d-inline">
+                            <button type="submit" class="btn">Đặt hàng ngay</button>
+                        </form>
+
                         <a href="/product" class="btn">Tiếp tục mua hàng</a>
                         @if (TempData["SuccessMessage"] != null)
                         {
@@ -96,4 +100,33 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cartItems = document.querySelectorAll('.box-cart-item');
+
+        function calculateTotal() {
+            let total = 0;
+            cartItems.forEach(item => {
+                const price = parseFloat(item.querySelector('.item-price').innerText.replace(/[^0-9.-]+/g, ""));
+                const qtyInput = item.querySelector('.qty_input');
+                const quantity = parseInt(qtyInput.value);
+                const itemTotal = price * quantity;
+
+                item.querySelector('.item-total').innerText = itemTotal.toLocaleString() + ' VND';
+
+               
+                total += itemTotal;
+            });
+            document.getElementById('totalMoneyPay').innerText = total.toLocaleString() + ' VND';
+            document.getElementById('totalMoney').innerText = total.toLocaleString() + ' VND';
+        }
+
+        cartItems.forEach(item => {
+            const qtyInput = item.querySelector('.qty_input');
+            qtyInput.addEventListener('change', calculateTotal);
+        });
+
+        calculateTotal();
+    });
+</script>
 

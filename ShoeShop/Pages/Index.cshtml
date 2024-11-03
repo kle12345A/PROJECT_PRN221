@@ -45,10 +45,17 @@
                                 <img src="@product.Image" class="card-img-top product-image" alt="Product 1">
                                 <div class="card-body">
                                     <h5 class="card-title">@product.Title</h5>
-                                    <p class="card-text">Price Old: @string.Format("{0:#,##0}", @product.PriceOld) VND</p>
+                                    <p><i>@product.Content</i></p>
+                                    <p class="card-text price-old">
+                                        <i> Giá Cũ: @string.Format("{0:#,##0}", @product.PriceOld) VND</i>
+                                       
+                                    </p>
 
-                                    <p class="card-text">Price New: @string.Format("{0:#,##0}",@product.PriceNew) VND</p>
-                                    <i class="fa-solid fa-cart-shopping"></i>&nbsp;Mua hàng
+                                    <p class="card-text">Giá Mới: @string.Format("{0:#,##0}",@product.PriceNew) VND</p>
+                                    <a asp-page="/cart/Index" asp-page-handler="Add" asp-route-id="@product.Id" style="text-decoration:none;">
+                                        <i class="fa-solid fa-cart-shopping"></i>&nbsp;Mua hàng
+                                    </a>
+                                    
                                 </div>
                             </div>
                         </div>

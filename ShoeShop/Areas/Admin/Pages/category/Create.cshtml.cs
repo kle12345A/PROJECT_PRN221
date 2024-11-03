@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Hosting;
 using DataAccess.Models;
 using BusinessObject.category;
+using System.Text.Json;
 
 namespace ShoeShop.Areas.Admin.Pages.category
 {
@@ -29,11 +31,35 @@ namespace ShoeShop.Areas.Admin.Pages.category
 
         public IActionResult OnGet()
         {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return RedirectToPage("/authentication/Login");
+            }
+
+            var authenticatedUser = JsonSerializer.Deserialize<User>(userSession);
+            if (authenticatedUser.RoleId != 1)
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return RedirectToPage("/authentication/Login");
+            }
+
+            var authenticatedUser = JsonSerializer.Deserialize<User>(userSession);
+            if (authenticatedUser.RoleId != 1)
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -56,11 +82,10 @@ namespace ShoeShop.Areas.Admin.Pages.category
                     await ImageFile.CopyToAsync(stream);
                 }
 
-                Category.Icon = $"/Image/category/{fileName}"; 
+                Category.Icon = $"/Image/category/{fileName}";
             }
 
             await _categoryService.AddAsync(Category);
-
             return RedirectToPage("./Index");
         }
     }

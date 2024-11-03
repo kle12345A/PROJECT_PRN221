@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using BusinessObject.contact;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Models;
+using System.Text.Json;
 
 namespace ShoeShop.Areas.Admin.Pages.contact
 {
@@ -23,6 +24,18 @@ namespace ShoeShop.Areas.Admin.Pages.contact
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return RedirectToPage("/authentication/Login");
+            }
+
+            var authenticatedUser = JsonSerializer.Deserialize<User>(userSession);
+            if (authenticatedUser.RoleId != 1)
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -39,6 +52,18 @@ namespace ShoeShop.Areas.Admin.Pages.contact
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return RedirectToPage("/authentication/Login");
+            }
+
+            var authenticatedUser = JsonSerializer.Deserialize<User>(userSession);
+            if (authenticatedUser.RoleId != 1)
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
             if (!ModelState.IsValid)
             {
                 return Page();

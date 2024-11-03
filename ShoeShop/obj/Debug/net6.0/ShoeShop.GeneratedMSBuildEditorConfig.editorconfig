@@ -78,6 +78,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcbmV3c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Areas/Admin/Pages/order/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcb3JkZXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Areas/Admin/Pages/order/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcb3JkZXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Areas/Admin/Pages/order/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcb3JkZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Areas/Admin/Pages/product/CreateProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNccHJvZHVjdFxDcmVhdGVQcm9kdWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -138,6 +150,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Pages/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjZXNzRGVuaWVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Pages/authentication/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYXV0aGVudGljYXRpb25cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -182,6 +198,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNccHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Pages/profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNccHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -197,6 +217,10 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Pages/cart/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcY2FydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-z7b7am5lsk
+
+[C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Pages/cart/Thanks.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcY2FydFxUaGFua3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-k4zvfjoeuh
 
 [C:/Users/Asus/source/repos/Project_Prn212/ShoeShop/Pages/product/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNccHJvZHVjdFxMaXN0LmNzaHRtbA==

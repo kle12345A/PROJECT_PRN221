@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using DataAccess.Models;
+using System.Text.Json;
 
 namespace ShoeShop.Areas.Admin.Pages.contact
 {
@@ -20,17 +17,41 @@ namespace ShoeShop.Areas.Admin.Pages.contact
 
         public IActionResult OnGet()
         {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return RedirectToPage("/authentication/Login");
+            }
+
+            var authenticatedUser = JsonSerializer.Deserialize<User>(userSession);
+            if (authenticatedUser.RoleId != 1)
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
             return Page();
         }
 
         [BindProperty]
         public Contact Contact { get; set; } = default!;
-        
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+       
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Contacts == null || Contact == null)
+     
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return RedirectToPage("/authentication/Login");
+            }
+
+            var authenticatedUser = JsonSerializer.Deserialize<User>(userSession);
+            if (authenticatedUser.RoleId != 1)
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
+            if (!ModelState.IsValid || _context.Contacts == null || Contact == null)
             {
                 return Page();
             }

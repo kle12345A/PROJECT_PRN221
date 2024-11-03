@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Models;
+using DataAccess.Repository.order;
 
 namespace DataAccess.Repository.Base
 {
@@ -21,8 +22,10 @@ namespace DataAccess.Repository.Base
         IContactRepository Contacts { get; }
         ICategoryRepository Categories { get; }
         IUserRepository Users { get; }
+		IOrdersRepository Orders { get; }
 
-        Task SaveChangesAsync();
+
+		Task SaveChangesAsync();
         IBaseRepository<TEntity> BaseRepository<TEntity>() where TEntity : class; 
     }
 }

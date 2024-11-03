@@ -168,3 +168,8 @@ body {
     margin-left: 10px;
     color: #CFB492;
 }
+.price-old {
+    text-decoration: line-through;
+    color: gray;
+
+}

@@ -11,8 +11,8 @@
 	</div>
 	<div class="col-md-6 detail-product-info">
 		<h3 class="detail-product-title">@Model.Product.Title</h3>
-		<p class="detail-product-price">Price: @Model.Product.PriceNew</p>
-		<p class="detail-product-description">@Model.Product.Content</p>
+		<p class="detail-product-price">Price: @string.Format("{0:#,##0}",@Model.Product.PriceNew)</p>
+		<p class="detail-product-description">@Model.Product.Description</p>
 		<label>Quantity:</label>
 		<input type="number" class="detail-quantity-input" /><br/>
 		<button class="btn btn-primary detail-add-to-cart" style="margin-top:3%;">Add to cart</button>

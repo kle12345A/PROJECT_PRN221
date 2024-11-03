@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Pages\AccessDenied.cshtml.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\Image\category\" />
     <Folder Include="wwwroot\Image\news\" />
   </ItemGroup>
@@ -38,6 +42,10 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\cart\Add.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Pages\AccessDenied.cshtml.css" />
   </ItemGroup>
 
   <ItemGroup>

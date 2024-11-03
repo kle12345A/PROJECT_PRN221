@@ -31,11 +31,14 @@ namespace DataAccess.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
+
             {
                 var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
                 String ConnectionStr = config.GetConnectionString("MyContr");
                 optionsBuilder.UseSqlServer(ConnectionStr);
             }
+
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -132,17 +135,19 @@ namespace DataAccess.Models
             {
                 entity.Property(e => e.Address).HasMaxLength(255);
 
-                entity.Property(e => e.CreateDate)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
-
                 entity.Property(e => e.CreatedDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Email).HasMaxLength(100);
 
+                entity.Property(e => e.Name).HasMaxLength(50);
+
                 entity.Property(e => e.Status).HasMaxLength(50);
+
+                entity.Property(e => e.UpdateDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Orders)

@@ -10,7 +10,7 @@ namespace ShoeShop.Pages.cart
     {
         private readonly PROJECT_PRN212Context _context;
         private const string CartSessionKey = "My-Cart";
-
+        private const string CustomerSessionKey = "UserSession";
         public List<Cart> Carts { get; set; } = new();
         public decimal Total => Carts.Sum(item => item.Total); // Tính t?ng tr?c ti?p t? danh sách
 
@@ -42,7 +42,7 @@ namespace ShoeShop.Pages.cart
             var cartItem = Carts.FirstOrDefault(c => c.Id == id);
             if (cartItem != null)
             {
-                cartItem.Quantity++; // T?ng s? l??ng
+                cartItem.Quantity++; 
             }
             else
             {
@@ -92,6 +92,60 @@ namespace ShoeShop.Pages.cart
             }
             return RedirectToPage();
         }
+
+        public IActionResult OnPostCheckout()
+        {
+            // Ki?m tra n?u gi? hàng r?ng
+            if (Carts == null || !Carts.Any())
+            {
+                TempData["ErrorMessage"] = "Gi? hàng tr?ng!";
+                return RedirectToPage(); // Quay l?i trang gi? hàng
+            }
+
+            // Ki?m tra thông tin khách hàng t? session
+            var customerJson = HttpContext.Session.GetString(CustomerSessionKey);
+            if (string.IsNullOrEmpty(customerJson))
+            {
+                return RedirectToPage("/Login/Index"); // Chuy?n h??ng ??n trang ??ng nh?p
+            }
+
+            var customer = JsonConvert.DeserializeObject<User>(customerJson);
+
+            // T?o ??n hàng
+            var order = new Order
+            {
+                UserId = customer.Id,
+                Name = customer.Name,
+                Email = customer.Email,
+                Address = customer.Address,
+                UpdateDate = DateTime.Now,
+                Status = "0" // ??n hàng m?i
+            };
+            _context.Orders.Add(order);
+            _context.SaveChanges(); // L?u ?? l?y ID ??n hàng
+
+            // T?o chi ti?t ??n hàng
+            foreach (var item in Carts)
+            {
+                var orderDetail = new OrderDetail
+                {
+                    OrderId = order.Id,
+                    ProductId = item.Id,
+                    Quantity = item.Quantity,
+                    Price = item.Price
+                };
+                _context.OrderDetails.Add(orderDetail);
+            }
+
+            _context.SaveChanges(); // L?u t?t c? thay ??i
+
+            // Xóa gi? hàng kh?i session
+            HttpContext.Session.Remove(CartSessionKey);
+
+            TempData["SuccessMessage"] = "??t hàng thành công!";
+            return RedirectToPage("/Cart/Thanks"); // ?i?u h??ng ??n trang c?m ?n
+        }
+
 
         private void SaveCart()
         {

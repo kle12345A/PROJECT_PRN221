@@ -1,0 +1,118 @@
+﻿@page
+@model ShoeShop.Areas.Admin.Pages.order.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Pages/_AdminLayout.cshtml";
+}
+
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Categories</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Manager Orders</h3>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Order[0].Email)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Order[0].Address)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Order[0].CreatedDate)
+                                    </th>
+                                   
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Order[0].UpdateDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Order[0].Status)
+                                    </th>
+                                  
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Order)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Address)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UpdateDate)
+                                        </td>
+                                       
+                                        <td>
+                                            @if (item.Status == "1")
+                                            {
+                                                <span class="badge badge-success">Accepted</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-warning">Pending</span>
+                                            }
+                                        </td>
+                                       
+                                        <td>
+                                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a> |
+                                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a> 
+                                           
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table><br />
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<style>
+    .icon-image {
+        max-width: 50px;
+        max-height: 50px;
+        object-fit: contain;
+    }
+</style>

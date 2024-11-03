@@ -21,10 +21,14 @@
                 <!-- Căn giữa các phần tử -->
                 <a class="navbar-brand" asp-area="" asp-page="/Index">ShoeShop</a>
 
-               
 
+                @{
+                    var userJson = Context.Session.GetString("UserSession");
+                    var user = userJson != null ? JsonSerializer.Deserialize<User>(userJson) : null;
+                }
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
+                       
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
@@ -38,18 +42,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/News/Index">News</a>
                         </li>
+                        @if (user != null && user.RoleId == 1)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-page="Index">Manager</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <div class="d-flex align-items-center">
-                    <!-- Căn bên phải -->
-                    @{
-                        var userJson = Context.Session.GetString("UserSession");
-                        var user = userJson != null ? JsonSerializer.Deserialize<User>(userJson) : null;
-                    }
+                    
+                  
 
                     @if (user != null)
                     {
-                        <span class="me-2">@user.Name!</span>
+
+                        <a asp-page="/profile/Index" asp-route-id="@user.Id"><span class="me-2">@user.Name!</span></a>
                         <a asp-page="/authentication/logout" class="me-3"><i class="fa-solid fa-right-from-bracket"></i></a> <!-- Nút Logout -->
                     }
                     else

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using DataAccess.Models;
 using BusinessObject.category;
+using System.Text.Json;
 
 namespace ShoeShop.Areas.Admin.Pages.category
 {
     public class IndexModel : PageModel
     {
-        private ICategoryService _categoryService;
+        private readonly ICategoryService _categoryService;
         public IndexModel(ICategoryService categoryService)
         {
             _categoryService = categoryService;
@@ -20,9 +16,22 @@ namespace ShoeShop.Areas.Admin.Pages.category
 
         public List<Category> Category { get; set; } = new List<Category>();
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return RedirectToPage("/authentication/Login"); 
+            }
+
+            var authenticatedUser = JsonSerializer.Deserialize<User>(userSession);
+            if (authenticatedUser.RoleId != 1)
+            {
+                return RedirectToPage("/AccessDenied"); 
+            }
+
             Category = (List<Category>)(await _categoryService.GetAllAsync());
+            return Page();
         }
     }
 }

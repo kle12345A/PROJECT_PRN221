@@ -1,0 +1,150 @@
+﻿@page
+@model ShoeShop.Pages.profile.IndexModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<div>
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Profile</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Form để cập nhật thông tin người dùng -->
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="User.Id" />
+
+                <div class="form-group">
+                    <label asp-for="User.Name" class="control-label"></label>
+                    <input asp-for="User.Name" class="form-control" />
+                    <span asp-validation-for="User.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="User.Address" class="control-label"></label>
+                    <input asp-for="User.Address" class="form-control" />
+                    <span asp-validation-for="User.Address" class="text-danger"></span>
+                </div>
+
+               
+                    <input asp-for="User.Password" type="text" class="form-control" hidden />
+                <input asp-for="User.RoleId" type="text" class="form-control" hidden />
+                 
+
+
+                <div class="form-group">
+                    <label asp-for="User.Email" class="control-label"></label>
+                    <input asp-for="User.Email" type="email" class="form-control" />
+                    <span asp-validation-for="User.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="User.Phone" class="control-label"></label>
+                    <input asp-for="User.Phone" class="form-control" />
+                    <span asp-validation-for="User.Phone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="User.CreateDate" class="control-label"></label>
+                    <input asp-for="User.CreateDate" class="form-control" readonly />
+                    <span asp-validation-for="User.CreateDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save Changes" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+            @if (Model.SelectedOrderId == null) 
+            {
+                <h2>Order History</h2>
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Created Date</th>
+                                <th>Updated Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model.Orders)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => order.Email)</td>
+                                    <td>@Html.DisplayFor(modelItem => order.Address)</td>
+                                    <td>@Html.DisplayFor(modelItem => order.CreatedDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => order.UpdateDate)</td>
+                                    <td>
+                                        @if (order.Status == "1")
+                                        {
+                                            <span class="badge badge-success">Accepted</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-warning">Pending</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-page="./Index" asp-route-id="@Model.User.Id" asp-route-orderId="@order.Id" class="btn btn-primary">Details</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table><br />
+                </div>
+            }
+            else // Nếu có đơn hàng được chọn
+            {
+                var selectedOrder = Model.Orders.FirstOrDefault(o => o.Id == Model.SelectedOrderId);
+                var selectedOrderDetails = Model.OrderDetails.FirstOrDefault(d => Model.Orders.IndexOf(selectedOrder) == Model.OrderDetails.IndexOf(d));
+
+                <h2>Order Details</h2>
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (selectedOrderDetails != null)
+                            {
+                                decimal totalPrice = 0;
+                                foreach (var detail in selectedOrderDetails)
+                                {
+                                    <tr>
+                                        <td>@detail.Product.Title</td>
+                                        <td>@detail.Quantity</td>
+                                        <td> @string.Format("{0:#,##0}",@detail.Price) VND</td>
+                                    </tr>
+                                    totalPrice += detail.Price * detail.Quantity;
+                                }
+                                <tr>
+                                    <td colspan="2" class="text-right"><strong>Total:</strong></td>
+                                    <td><strong> @string.Format("{0:#,##0}",@totalPrice)VND</strong></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a asp-page="./Index" asp-route-id="@Model.User.Id" class="btn btn-secondary">Back to Orders</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
