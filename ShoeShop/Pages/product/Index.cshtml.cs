@@ -10,11 +10,13 @@ namespace ShoeShop.Pages.product
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
+
         public IndexModel(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
             _categoryService = categoryService;
         }
+
         [BindProperty]
         public List<Product> Products { get; set; }
         public Dictionary<int, List<Product>> ProductsByCategory { get; set; }
@@ -24,13 +26,18 @@ namespace ShoeShop.Pages.product
         {
             var allProducts = await _productService.GetAllAsync();
             var allCategories = await _categoryService.GetAllAsync();
-            Products = allProducts.Where(p => p.Cid == 1).ToList();
-            ProductsByCategory = allProducts
-     .Where(p => p.Cid.HasValue)  
-     .GroupBy(p => p.Cid.Value) 
-     .ToDictionary(g => g.Key, g => g.ToList());
-            CategoryNames = allCategories.ToDictionary(c => c.Id, c => c.Title);
 
+            
+
+            ProductsByCategory = allProducts
+                .Where(p => p.Cid.HasValue)
+                .GroupBy(p => p.Cid.Value)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.Take(4).ToList() 
+                );
+
+            CategoryNames = allCategories.ToDictionary(c => c.Id, c => c.Title);
         }
     }
 }

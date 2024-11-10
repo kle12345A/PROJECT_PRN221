@@ -34,15 +34,15 @@ namespace ShoeShop.Pages.product
             var category = await _categoryService.GetByIdAsync(id);
             CategoryName = category?.Title;
 
-            // L?y danh sách s?n ph?m theo ID danh m?c
+        
             Products = (List<Product>)_productService.GetProductsByCategoryId(id);
 
-            // Áp d?ng b? l?c giá
+     
             if (price.HasValue)
             {
                 if (price.Value == 0)
                 {
-                    // Không l?c, l?y t?t c? s?n ph?m
+                    
                 }
                 else if (price.Value <= 5000000)
                 {
@@ -62,7 +62,7 @@ namespace ShoeShop.Pages.product
                 }
             }
 
-            // Áp d?ng tìm ki?m theo tên
+        
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 Products = Products.Where(p => p.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();

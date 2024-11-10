@@ -1,4 +1,4 @@
-using BusinessObject.order;
+ï»¿using BusinessObject.order;
 using BusinessObject.user;
 using DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +30,13 @@ namespace ShoeShop.Pages.profile
 
         public async Task OnGetAsync(int id, int? orderId = null)
         {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (userSession == null)
+            {
+             
+                RedirectToPage("/authentication/Login");
+                return; 
+            }
             User = await _userService.GetByIdAsync(id);
             Orders = await _ordersService.GetQuery().Include(x => x.OrderDetails).Where(x => x.UserId == id).ToListAsync();
             await LoadOrderDetailsAsync();
@@ -53,12 +60,14 @@ namespace ShoeShop.Pages.profile
 
             try
             {
+                User.UpdateDate = DateTime.Now;
+                User.IsActive = true;
                 await _userService.UpdateAsync(User);
                 return RedirectToPage("./Index", new { id = User.Id });
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "Có l?i x?y ra khi c?p nh?t thông tin ng??i dùng. Vui lòng th? l?i.");
+                
                 return Page(); 
             }
         }

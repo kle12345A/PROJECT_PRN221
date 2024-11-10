@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessObject.user;
 using DataAccess.Models;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -30,7 +27,6 @@ namespace ShoeShop.Areas.Admin.Pages.user
         [BindProperty]
         public User User { get; set; } = default!;
 
-
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.Users == null)
@@ -43,6 +39,7 @@ namespace ShoeShop.Areas.Admin.Pages.user
             {
                 return NotFound();
             }
+
             User = user;
             ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Name");
             return Page();
@@ -54,9 +51,8 @@ namespace ShoeShop.Areas.Admin.Pages.user
             {
                 return Page();
             }
-            
 
-            _context.Attach(User).State = EntityState.Modified; 
+            _context.Attach(User).State = EntityState.Modified;
             User.UpdateDate = DateTime.Now;
 
             try
@@ -81,6 +77,18 @@ namespace ShoeShop.Areas.Admin.Pages.user
         private bool UserExists(int id)
         {
             return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        private async Task<bool> CheckAccessAsync()
+        {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return false;
+            }
+
+            var user = System.Text.Json.JsonSerializer.Deserialize<User>(userSession);
+            return user?.RoleId == 1;
         }
     }
 }

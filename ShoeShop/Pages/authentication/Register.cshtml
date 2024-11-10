@@ -11,28 +11,27 @@
 
     <div class="row">
         <div class="col-md-4">
-            <form id="registerForm" method="post">
-                <h2>Create a new account.</h2>
-                <hr />
+            <form method="post">
                 <div class="form-floating mb-3">
-                    <input type="email" id="email" class="form-control" placeholder="name@example.com" required />
-                    <label for="email">Email</label>
-                    <div class="text-danger" id="emailError"></div>
+                    <input asp-for="Email" class="form-control" placeholder="name@example.com" required />
+                    <label asp-for="Email">Email</label>
+                    <span class="text-danger" asp-validation-for="Email"></span>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" id="password" class="form-control" placeholder="Password" required />
-                    <label for="password">Password</label>
-                    <div class="text-danger" id="passwordError"></div>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Password" required />
+                    <label asp-for="Password">Password</label>
+                    <span class="text-danger" asp-validation-for="Password"></span>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required />
-                    <label for="confirmPassword">Confirm Password</label>
-                    <div class="text-danger" id="confirmPasswordError"></div>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" required />
+                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                    <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
                 </div>
-                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
             </form>
-        </div>
 
+        </div>
+        
         <div class="col-md-6 offset-md-2">
             <section>
                 <h3>Use another service to register.</h3>
@@ -41,6 +40,10 @@
                 <button class="btn btn-primary mb-2">Log in with Google</button>
                 <button class="btn btn-primary mb-2">Log in with Facebook</button>
             </section>
+        </div>
+        <div>
+            <a asp-page="/authentication/Login">Back to Login</a>
+
         </div>
     </div>
 </div>

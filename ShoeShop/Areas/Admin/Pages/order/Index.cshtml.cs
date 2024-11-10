@@ -18,15 +18,41 @@ namespace ShoeShop.Areas.Admin.Pages.order
             _context = context;
         }
 
-        public IList<Order> Order { get;set; } = default!;
+        public IList<Order> Order { get; set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
+            // Kiểm tra quyền truy cập
+            var accessResult = await CheckAccessAsync();
+            if (accessResult != null) // Nếu có trang để chuyển hướng
+            {
+                return accessResult;
+            }
+
             if (_context.Orders != null)
             {
                 Order = await _context.Orders
-                .Include(o => o.User).ToListAsync();
+                    .Include(o => o.User)
+                    .ToListAsync();
             }
+            return Page();
+        }
+
+        private async Task<IActionResult> CheckAccessAsync()
+        {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                
+                return RedirectToPage("/Authentication/Login");
+            }
+
+            var user = System.Text.Json.JsonSerializer.Deserialize<User>(userSession);
+            if (user?.RoleId != 1) 
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+            return null;
         }
     }
 }

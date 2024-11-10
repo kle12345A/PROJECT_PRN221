@@ -292,3 +292,13 @@ C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\ShoeShop.Mvc
 C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\product\List.cshtml.rz.scp.css
 C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\cart\Index.cshtml.rz.scp.css
 C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\cart\Thanks.cshtml.rz.scp.css
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\Index.cshtml.rz.scp.css
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\product\Index.cshtml.rz.scp.css
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\System.Net.Mail.Abstractions.dll
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\MailKit.dll
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\MimeKit.dll
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\X.PagedList.dll
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
+C:\Users\Asus\source\repos\Project_Prn212\ShoeShop\obj\Debug\net6.0\scopedcss\Pages\news\Index.cshtml.rz.scp.css

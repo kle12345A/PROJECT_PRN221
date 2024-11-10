@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.IO; 
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
 namespace ShoeShop.Areas.Admin.Pages.product
@@ -14,7 +14,7 @@ namespace ShoeShop.Areas.Admin.Pages.product
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
-        private readonly IWebHostEnvironment _environment; 
+        private readonly IWebHostEnvironment _environment;
 
         public CreateProductModel(
             IProductService productService,
@@ -30,7 +30,7 @@ namespace ShoeShop.Areas.Admin.Pages.product
         public Product Product { get; set; } = new Product();
 
         [BindProperty]
-        public IFormFile ImageFile { get; set; } 
+        public IFormFile ImageFile { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -40,12 +40,18 @@ namespace ShoeShop.Areas.Admin.Pages.product
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var userJson = HttpContext.Session.GetString("User");
+            if (!await CheckAccessAsync())
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
+            var userJson = HttpContext.Session.GetString("UserSession");
             if (userJson != null)
             {
                 var user = System.Text.Json.JsonSerializer.Deserialize<dynamic>(userJson);
                 Product.AdminCreate = user?.Name;
             }
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -68,14 +74,25 @@ namespace ShoeShop.Areas.Admin.Pages.product
                     await ImageFile.CopyToAsync(stream);
                 }
 
-              
                 Product.Image = $"/Image/product/{fileName}";
             }
 
-                 Product.CreateDate = DateTime.Now;
+            Product.CreateDate = DateTime.Now;
             await _productService.AddAsync(Product);
 
             return RedirectToPage("ProductManager");
+        }
+
+        private async Task<bool> CheckAccessAsync()
+        {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return false;
+            }
+
+            var user = System.Text.Json.JsonSerializer.Deserialize<User>(userSession);
+            return user?.RoleId == 1;
         }
     }
 }

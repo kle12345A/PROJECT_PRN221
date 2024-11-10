@@ -1,0 +1,11 @@
+.out-of-stock[b-vmdc7tvpkb] {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.out-of-stock-label[b-vmdc7tvpkb] {
+    color: red;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}

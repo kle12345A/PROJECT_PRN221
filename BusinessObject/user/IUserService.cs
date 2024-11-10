@@ -11,5 +11,9 @@ namespace BusinessObject.user
     {
         Task<IList<User>> GetAllWithRolesAsync();
         User? Authenticate(string email, string password);
+        Task<int> GetTotalUsersCountAsync();
+        Task<User?> GetByEmailAsync(string email);
+        Task<bool> UpdatePasswordAsync(User user, string newPassword);
+        Task UpdateLastLoginAsync(User user);
     }
 }

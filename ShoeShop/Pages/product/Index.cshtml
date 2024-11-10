@@ -38,44 +38,49 @@
 
 
 
-<h2>Sản phẩm theo danh mục</h2>
+<h2>Products by Category</h2>
 <div class="main-news">
-@foreach (var category in Model.ProductsByCategory)
-{
-    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-        <h4>@Model.CategoryNames[category.Key]</h4>
+    @foreach (var category in Model.ProductsByCategory)
+    {
+        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+            <h4>@Model.CategoryNames[category.Key]</h4>
             <h5 style="margin-bottom: 34px; margin-right:26px;">
-                <a asp-page="/product/List" asp-route-id="@category.Key">XEM TẤT CẢ</a>
+                <a asp-page="/product/List" asp-route-id="@category.Key">View All</a>
             </h5>
+        </div>
 
-    </div>
-    
-    <div class="row">
-        @foreach (var product in category.Value)
-        {
-            <div class="col-md-3">
-                <div class="card">
-                        <a  asp-page="/Product/Details" asp-route-id="@product.Id" style="text-decoration: none; color: inherit;">
+        <div class="row">
+            @foreach (var product in category.Value)
+            {
+                <div class="col-md-3">
+                    <div class="card @(product.Quantity == 0 ? "out-of-stock" : "")">
+                        <a asp-page="/Product/Details" asp-route-id="@product.Id" style="text-decoration: none; color: inherit;">
                             <img src="@product.Image" class="card-img-top product-image" alt="@product.Title" />
-                        <div class="card-body">
-                            <p class="card-title " >@product.Title</p>
+                            <div class="card-body">
+                                <p class="card-title">@product.Title</p>
                                 <p><i>@product.Content</i></p>
                                 <p class="card-text price-old">
-                                    <i> Giá Cũ: @string.Format("{0:#,##0}", @product.PriceOld) VND</i>
-
+                                    <i>Old Price: @string.Format("{0:#,##0}", @product.PriceOld) VND</i>
                                 </p>
-                                <p class="card-text">Giá Mới: @string.Format("{0:#,##0}", @product.PriceNew) VND</p>
-                                <a asp-page="/cart/Index" asp-page-handler="Add" asp-route-id="@product.Id" style="text-decoration:none;">
-                                    <i class="fa-solid fa-cart-shopping"></i>&nbsp;Mua hàng
-                                </a>
+                                <p class="card-text">New Price: @string.Format("{0:#,##0}", @product.PriceNew) VND</p>
 
-                        </div>
-                    </a>
+                                @if (product.Quantity > 0)
+                                {
+                                    <a asp-page="/cart/Index" asp-page-handler="Add" asp-route-id="@product.Id" style="text-decoration:none;">
+                                        <i class="fa-solid fa-cart-shopping"></i>&nbsp;Buy
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="out-of-stock-label">Out of Stock</span>
+                                }
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        }
-    </div>
-}
+            }
+        </div>
+    }
 </div>
 
 

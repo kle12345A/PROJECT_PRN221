@@ -1,4 +1,4 @@
-using DataAccess.Models;
+Ôªøusing DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,7 +12,7 @@ namespace ShoeShop.Pages.cart
         private const string CartSessionKey = "My-Cart";
         private const string CustomerSessionKey = "UserSession";
         public List<Cart> Carts { get; set; } = new();
-        public decimal Total => Carts.Sum(item => item.Total); // TÌnh t?ng tr?c ti?p t? danh s·ch
+        public decimal Total => Carts.Sum(item => item.Total);
 
         public IndexModel(PROJECT_PRN212Context context)
         {
@@ -31,63 +31,119 @@ namespace ShoeShop.Pages.cart
 
         public void OnGet()
         {
-            // T?ng gi· tr? gi? h‡ng ?„ ???c tÌnh to·n trong thu?c tÌnh Total
+          
         }
+		public IActionResult OnPostAdd(int id, int quantity)
+		{
+			var product = _context.Products.Find(id);
+			if (product == null) return NotFound();
 
-        public IActionResult OnGetAdd(int id)
+			if (quantity > product.Quantity)
+			{
+				TempData["ErrorMessage"] = "The requested quantity exceeds the available stock.";
+				return RedirectToPage("/Product/Details", new { id = id });
+			}
+
+			var cartItem = Carts.FirstOrDefault(c => c.Id == id);
+			if (cartItem != null)
+			{
+				if (cartItem.Quantity + quantity > product.Quantity)
+				{
+					TempData["ErrorMessage"] = "The total quantity in the cart exceeds the available stock.";
+					return RedirectToPage("/Product/Details", new { id = id });
+				}
+				cartItem.Quantity += quantity;
+			}
+			else
+			{
+				Carts.Add(new Cart
+				{
+					Id = product.Id,
+					Name = product.Title,
+					Price = product.PriceNew.Value,
+					Quantity = quantity,
+					Image = product.Image
+				});
+			}
+
+			SaveCart();
+			return RedirectToPage();
+		}
+
+		public IActionResult OnGetAdd(int id)
+		{
+			var product = _context.Products.Find(id);
+			if (product == null) return NotFound();
+
+			var cartItem = Carts.FirstOrDefault(c => c.Id == id);
+			if (cartItem != null)
+			{
+				
+				if (cartItem.Quantity + 1 > product.Quantity)
+				{
+					TempData["ErrorMessage"] = "The total quantity in the cart exceeds the available stock.";
+					return RedirectToPage();
+				}
+				cartItem.Quantity++;
+			}
+			else
+			{
+				if (product.Quantity < 1)
+				{
+					TempData["ErrorMessage"] = "The product is out of stock.";
+					return RedirectToPage();
+				}
+
+				Carts.Add(new Cart
+				{
+					Id = product.Id,
+					Name = product.Title,
+					Price = product.PriceNew.Value,
+					Quantity = 1,
+					Image = product.Image
+				});
+			}
+
+			SaveCart();
+			return RedirectToPage();
+		}
+
+		public IActionResult OnPostUpdate(int id, int quantity)
+		{
+			var cartItem = Carts.FirstOrDefault(c => c.Id == id);
+			var product = _context.Products.Find(id);
+			if (cartItem != null && product != null)
+			{
+				
+				if (quantity > product.Quantity)
+				{
+					TempData["ErrorMessage"] = "The requested quantity exceeds the available stock.";
+					return RedirectToPage();
+				}
+
+				if (quantity > 0)
+				{
+					cartItem.Quantity = quantity;
+					cartItem.Total = cartItem.Price * quantity;
+				}
+				else
+				{
+					Carts.Remove(cartItem);
+				}
+			}
+
+			SaveCart();
+			return RedirectToPage();
+		}
+
+
+
+		public IActionResult OnGetRemove(int id)
         {
-            var product = _context.Products.Find(id);
-            if (product == null) return NotFound();
-
             var cartItem = Carts.FirstOrDefault(c => c.Id == id);
             if (cartItem != null)
             {
-                cartItem.Quantity++; 
-            }
-            else
-            {
-                // ThÍm s?n ph?m m?i v‡o gi? h‡ng
-                Carts.Add(new Cart
-                {
-                    Id = product.Id,
-                    Name = product.Title,
-                    Price = product.PriceNew.Value,
-                    Quantity = 1,
-                    Image = product.Image
-                });
-            }
-
-            SaveCart();
-            return RedirectToPage();
-        }
-
-        public IActionResult OnPostUpdate(int id, int quantity)
-        {
-            var cartItem = Carts.FirstOrDefault(c => c.Id == id);
-            if (cartItem != null)
-            {
-                if (quantity > 0)
-                {
-                    cartItem.Quantity = quantity;
-                    cartItem.Total = cartItem.Price * quantity; // C?p nh?t t?ng
-                }
-                else
-                {
-                    Carts.Remove(cartItem); // XÛa s?n ph?m n?u s? l??ng khÙng h?p l?
-                }
-            }
-
-            SaveCart();
-            return RedirectToPage();
-        }
-
-
-        public IActionResult OnGetRemove(int id)
-        {
-            var cartItem = Carts.FirstOrDefault(c => c.Id == id);
-            if (cartItem != null)
-            {
-                Carts.Remove(cartItem); // XÛa s?n ph?m kh?i gi? h‡ng
+                Carts.Remove(cartItem); 
                 SaveCart();
             }
             return RedirectToPage();
@@ -95,23 +151,20 @@ namespace ShoeShop.Pages.cart
 
         public IActionResult OnPostCheckout()
         {
-            // Ki?m tra n?u gi? h‡ng r?ng
             if (Carts == null || !Carts.Any())
             {
-                TempData["ErrorMessage"] = "Gi? h‡ng tr?ng!";
-                return RedirectToPage(); // Quay l?i trang gi? h‡ng
+                TempData["ErrorMessage"] = "Gi·ªè h√†ng tr·ªëng!";
+                return RedirectToPage();
             }
 
-            // Ki?m tra thÙng tin kh·ch h‡ng t? session
             var customerJson = HttpContext.Session.GetString(CustomerSessionKey);
             if (string.IsNullOrEmpty(customerJson))
             {
-                return RedirectToPage("/Login/Index"); // Chuy?n h??ng ??n trang ??ng nh?p
+                return RedirectToPage("/authentication/Login");
             }
 
             var customer = JsonConvert.DeserializeObject<User>(customerJson);
 
-            // T?o ??n h‡ng
             var order = new Order
             {
                 UserId = customer.Id,
@@ -119,37 +172,49 @@ namespace ShoeShop.Pages.cart
                 Email = customer.Email,
                 Address = customer.Address,
                 UpdateDate = DateTime.Now,
-                Status = "0" // ??n h‡ng m?i
+                Status = "0"
             };
             _context.Orders.Add(order);
-            _context.SaveChanges(); // L?u ?? l?y ID ??n h‡ng
+            _context.SaveChanges();
 
-            // T?o chi ti?t ??n h‡ng
             foreach (var item in Carts)
             {
-                var orderDetail = new OrderDetail
+                var product = _context.Products.Find(item.Id);
+                if (product != null)
                 {
-                    OrderId = order.Id,
-                    ProductId = item.Id,
-                    Quantity = item.Quantity,
-                    Price = item.Price
-                };
-                _context.OrderDetails.Add(orderDetail);
+                    if (product.Quantity >= item.Quantity)
+                    {
+                        product.Quantity -= item.Quantity;
+
+                        var orderDetail = new OrderDetail
+                        {
+                            OrderId = order.Id,
+                            ProductId = item.Id,
+                            Quantity = item.Quantity,
+                            Price = item.Price
+                        };
+                        _context.OrderDetails.Add(orderDetail);
+                    }
+                    else
+                    {
+                        TempData["ErrorMessage"] = $"S·∫£n ph·∫©m {product.Title} kh√¥ng ƒë·ªß s·ªë l∆∞·ª£ng!";
+                        return RedirectToPage();
+                    }
+                }
             }
 
-            _context.SaveChanges(); // L?u t?t c? thay ??i
+            _context.SaveChanges();
 
-            // XÛa gi? h‡ng kh?i session
             HttpContext.Session.Remove(CartSessionKey);
 
-            TempData["SuccessMessage"] = "??t h‡ng th‡nh cÙng!";
-            return RedirectToPage("/Cart/Thanks"); // ?i?u h??ng ??n trang c?m ?n
+            return RedirectToPage("/Cart/Thanks");
         }
+
 
 
         private void SaveCart()
         {
-            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(Carts)); // L?u gi? h‡ng v‡o session
+            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(Carts));
         }
     }
 }

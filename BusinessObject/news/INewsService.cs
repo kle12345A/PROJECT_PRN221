@@ -9,5 +9,6 @@ namespace BusinessObject.news
 {
     public interface INewsService : IBaseService<News>
     {
+        Task<IEnumerable<News>> SearchAsync(string searchTerm);
     }
 }

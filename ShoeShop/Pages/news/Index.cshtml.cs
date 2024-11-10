@@ -1,7 +1,9 @@
+using X.PagedList;
 using BusinessObject.news;
 using DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using X.PagedList.Extensions;
 
 namespace ShoeShop.Pages.news
 {
@@ -14,12 +16,34 @@ namespace ShoeShop.Pages.news
             _newsService = newsService;
         }
 
+       
         [BindProperty]
-        public List<News> News { get; set; } = new List<News>();
+        public IPagedList<News> News { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int PageNumber { get; set; } = 1; 
 
         public async Task OnGetAsync()
         {
-            News = (await _newsService.GetAllAsync()).ToList();
+            int pageSize = 6;
+
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+               
+                var searchResults = await _newsService.SearchAsync(SearchTerm);
+                var activeSearchResults = searchResults.Where(news => news.Status == true).OrderByDescending(x => x.CreateDate);
+                News = activeSearchResults.ToPagedList(PageNumber, pageSize);
+            }
+            else
+            {
+              
+                var allNews = await _newsService.GetAllAsync();
+                var activeNews = allNews.Where(news => news.Status == true).OrderByDescending(x => x.CreateDate); ;
+                News = activeNews.ToPagedList(PageNumber, pageSize);
+            }
         }
     }
 }

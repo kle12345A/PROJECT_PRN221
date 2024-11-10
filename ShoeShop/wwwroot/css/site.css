@@ -145,7 +145,6 @@ body {
 
     .main-news-detail h5 {
         font-weight: bold;
-        color: #CFB492;
     }
 
 .new-article-detail {
@@ -166,7 +165,7 @@ body {
     margin-right: 20px;
     text-decoration: none;
     margin-left: 10px;
-    color: #CFB492;
+    color: black;
 }
 .price-old {
     text-decoration: line-through;

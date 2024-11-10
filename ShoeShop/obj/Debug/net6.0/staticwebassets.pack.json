@@ -49,12 +49,20 @@
       "PackagePath": "staticwebassets\\Image\\news\\lebron-xxii-1.webp"
     },
     {
+      "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\news\\mds-mercurial-superfly-1.webp",
+      "PackagePath": "staticwebassets\\Image\\news\\mds-mercurial-superfly-1.webp"
+    },
+    {
       "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\news\\nike-nba-wnba.webp",
       "PackagePath": "staticwebassets\\Image\\news\\nike-nba-wnba.webp"
     },
     {
       "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\news\\nike-zoom-fly-6-8.webp",
       "PackagePath": "staticwebassets\\Image\\news\\nike-zoom-fly-6-8.webp"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\news\\playground-for-all-1.webp",
+      "PackagePath": "staticwebassets\\Image\\news\\playground-for-all-1.webp"
     },
     {
       "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\news\\tokyo-coach-the-dream.webp",
@@ -85,8 +93,16 @@
       "PackagePath": "staticwebassets\\Image\\product\\Nike_3.jpg"
     },
     {
+      "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\product\\W+AIR+ZOOM+PEGASUS+41.png",
+      "PackagePath": "staticwebassets\\Image\\product\\W+AIR+ZOOM+PEGASUS+41.png"
+    },
+    {
       "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\product\\WMNS+AIR+FORCE+1+'07.png",
       "PackagePath": "staticwebassets\\Image\\product\\WMNS+AIR+FORCE+1+'07.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\product\\ZOOM+FLY+6.png",
+      "PackagePath": "staticwebassets\\Image\\product\\ZOOM+FLY+6.png"
     },
     {
       "Id": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\user\\lebron-xxii-1.webp",

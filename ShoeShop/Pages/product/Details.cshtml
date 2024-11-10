@@ -5,16 +5,40 @@
 	Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 <div class="row">
-	
+	@if (TempData["ErrorMessage"] != null)
+	{
+		<div class="alert alert-danger" role="alert">
+			@TempData["ErrorMessage"]
+		</div>
+	}
 	<div class="col-md-6">
 		<img src="@Model.Product.Image" alt="Nike" class="detail-product-image" />
 	</div>
 	<div class="col-md-6 detail-product-info">
 		<h3 class="detail-product-title">@Model.Product.Title</h3>
-		<p class="detail-product-price">Price: @string.Format("{0:#,##0}",@Model.Product.PriceNew)</p>
+	
+		<p class="card-text price-old">
+			<i> Old Price: @string.Format("{0:#,##0}", @Model.Product.PriceNew) VND</i>
+		</p>
+		<p class="card-text">New Price: @string.Format("{0:#,##0}", @Model.Product.PriceNew) VND</p>
 		<p class="detail-product-description">@Model.Product.Description</p>
-		<label>Quantity:</label>
-		<input type="number" class="detail-quantity-input" /><br/>
-		<button class="btn btn-primary detail-add-to-cart" style="margin-top:3%;">Add to cart</button>
+		<strong class="detail-product-description">Available Quantity: @Model.Product.Quantity</strong>
+
+		@* <label>Quantity:</label> *@
+@* 		<input type="number" class="detail-quantity-input" /><br/>
+ *@		@* <a asp-page="/cart/Index" asp-page-handler="Add" asp-route-id="@Model.Product.Id" style="text-decoration:none;">
+			<button class="btn btn-primary detail-add-to-cart" style="margin-top:3%;">Add to cart</button>
+		</a>
+		 *@
+
+		<form id="addToCartForm" asp-page="/Cart/Index" asp-page-handler="Add" method="post">
+			<div class="form-group">
+				<label for="quantity">Quantity</label>
+				<input type="number" id="quantity" name="quantity" placeholder="1" class="form-control quantity" min="1" style="width:20%; margin-bottom:5%;">
+				<input type="hidden" name="id" value="@Model.Product.Id">
+			</div>
+			<button type="submit" class="btn btn-round btn-primary"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+		</form>
+
 	</div>
 </div>

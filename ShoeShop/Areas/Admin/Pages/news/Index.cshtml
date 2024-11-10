@@ -61,9 +61,9 @@
                                             </td>
                                             <td>@(news.Status ? "Active" : "Inactive")</td>
                                             <td>
-                                                <a asp-area="Admin" asp-page="/news/Edit" asp-route-id="@news.Id" class="btn btn-warning">Edit</a>
-                                                <a asp-area="Admin" asp-page="/news/Delete" asp-route-id="@news.Id" class="btn btn-danger">Delete</a>
-                                                <a asp-area="Admin" asp-page="/news/Details" asp-route-id="@news.Id" class="btn btn-primary">Details</a>
+                                                <a asp-area="Admin" asp-page="/news/Edit" asp-route-id="@news.Id" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <a asp-area="Admin" asp-page="/news/Delete" asp-route-id="@news.Id" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                                <a asp-area="Admin" asp-page="/news/Details" asp-route-id="@news.Id" class="btn btn-primary"><i class="fa-regular fa-eye"></i></a>
                                             </td>
                                         </tr>
                                         index++;

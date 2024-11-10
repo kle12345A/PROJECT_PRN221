@@ -21,6 +21,11 @@ namespace ShoeShop.Areas.Admin.Pages.product
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (!await CheckAccessAsync())
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
             if (id == null || _productService == null)
             {
                 return NotFound();
@@ -37,6 +42,11 @@ namespace ShoeShop.Areas.Admin.Pages.product
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            if (!await CheckAccessAsync())
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
             if (id == null || _productService == null)
             {
                 return NotFound();
@@ -49,6 +59,18 @@ namespace ShoeShop.Areas.Admin.Pages.product
             }
 
             return RedirectToPage("./ProductManager");
+        }
+
+        private async Task<bool> CheckAccessAsync()
+        {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return false;
+            }
+
+            var user = System.Text.Json.JsonSerializer.Deserialize<User>(userSession);
+            return user?.RoleId == 1;
         }
     }
 }

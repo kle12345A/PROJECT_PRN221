@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="~/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <div class="wrapper">
@@ -60,7 +62,7 @@
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
 
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                   @*  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
@@ -75,7 +77,7 @@
                                 </div>
                             </div>
                             <!-- Message End -->
-                        </a>
+                        </a> *@
 
 
         </nav>
@@ -93,7 +95,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="~/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                       @*  <img src="~/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> *@
                     </div>
                     
 
@@ -104,12 +106,12 @@
                 <!-- SidebarSearch Form -->
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                        @* <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-sidebar">
                                 <i class="fas fa-search fa-fw"></i>
                             </button>
-                        </div>
+                        </div> *@
                     </div>
                 </div>
 
@@ -120,11 +122,11 @@
                              with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
-                            <a  class="nav-link">
+                            <a asp-area="Admin" asp-page="/Index"  class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Trang Chính
-                                    <span class="right badge badge-danger">New</span>
+                                    
                                 </p>
                             </a>
                         </li>
@@ -202,7 +204,7 @@
                                 <i class="nav-icon far fa-plus-square"></i>
                                 <p>
                                     Đơn hàng
-                                    <i class="fas fa-angle-left right"></i>
+                                   
                                 </p>
                             </a>
 

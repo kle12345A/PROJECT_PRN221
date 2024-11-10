@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using DataAccess.Models;
 using BusinessObject.user;
+using DataAccess.Models;
 
 namespace ShoeShop.Areas.Admin.Pages.user
 {
@@ -33,7 +30,25 @@ namespace ShoeShop.Areas.Admin.Pages.user
                 return NotFound();
             }
 
+            if (!await CheckAccessAsync())
+            {
+                Redirect("AccesDenied");
+
+            }
+
             return Page();
+        }
+
+        private async Task<bool> CheckAccessAsync()
+        {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return false;
+            }
+
+            var user = System.Text.Json.JsonSerializer.Deserialize<User>(userSession);
+            return user?.RoleId == 1; 
         }
     }
 }

@@ -24,25 +24,37 @@ namespace ShoeShop.Areas.Admin.Pages.order
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            // Kiểm tra quyền truy cập
+            var accessResult = await CheckAccessAsync();
+            if (accessResult != null) 
+            {
+                return accessResult;
+            }
+
             if (id == null || _context.Orders == null)
             {
                 return NotFound();
             }
 
-            var order =  await _context.Orders.FirstOrDefaultAsync(m => m.Id == id);
+            var order = await _context.Orders.FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
                 return NotFound();
             }
             Order = order;
-           ViewData["UserId"] = new SelectList(_context.Users, "Id", "Name");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Name");
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+     
+            var accessResult = await CheckAccessAsync();
+            if (accessResult != null) 
+            {
+                return accessResult;
+            }
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -69,9 +81,25 @@ namespace ShoeShop.Areas.Admin.Pages.order
             return RedirectToPage("./Index");
         }
 
+        private async Task<IActionResult> CheckAccessAsync()
+        {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
+            var user = System.Text.Json.JsonSerializer.Deserialize<User>(userSession);
+            if (user?.RoleId != 1) 
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+            return null;
+        }
+
         private bool OrderExists(int id)
         {
-          return (_context.Orders?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Orders?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

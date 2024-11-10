@@ -56,3 +56,10 @@ html[b-z7b7am5lsk] {
 .cart span[b-z7b7am5lsk] {
     color: #fd475a;
 }
+.cart-empty-container[b-z7b7am5lsk] {
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
+}

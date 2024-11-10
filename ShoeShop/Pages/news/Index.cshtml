@@ -1,4 +1,5 @@
 ﻿@page
+@using X.PagedList.Mvc.Core
 @model ShoeShop.Pages.news.IndexModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -10,7 +11,14 @@
 <div class="outer-container" style="background-color: #f2f5f9; padding-left: 14%; padding-right: 14%;">
     <div class="contain" style="background-color: white;">
         <div class="main-news">
-            <h3 class="news-title">TIN TỨC</h3>
+            <h3 class="news-title">NEWS</h3>
+            <!-- Search box -->
+            <div class="search-box  mb-3  " style="text-align:right;">
+                <form method="get" asp-page="/news/Index">
+                    <input type="text" name="searchTerm" placeholder="Search." value="@Model.SearchTerm" /> 
+                    <button type="submit">Search</button>
+                </form>
+            </div>
             <div class="row">
                 @if (Model.News != null && Model.News.Count > 0)
                 {
@@ -21,7 +29,8 @@
                                 <div class="news-card">
                                     <img src="@newItem.Image" class="card-img-top" alt="@newItem.Title">
                                     <div class="card-body">
-                                        <p style="font-size: 15px; font-weight: bold;" class="card-title">@newItem.Title</p>
+                                        <p style="font-size: 15px; font-weight: bold; color:black" class="card-title">@newItem.Title</p>
+                                        <p class="text-muted small">Published on: @newItem.CreateDate</p>
                                     </div>
                                 </div>
                             </a>
@@ -32,6 +41,10 @@
                 {
                     <p>Không có tin tức nào để hiển thị.</p>
                 }
+                <!-- Pagination -->
+                <div class="pagination-container">
+                    @Html.PagedListPager(Model.News, page => Url.Page("/news/Index", new { pageNumber = page, searchTerm = Model.SearchTerm }), PagedListRenderOptions.Classic)
+                </div>
             </div>
         </div>
     </div>

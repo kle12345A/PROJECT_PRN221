@@ -31,13 +31,43 @@
                         <p>
                             <a asp-area="Admin" asp-page="/product/CreateProduct">Create New</a>
                         </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form method="get" asp-page="/Product/ProductManager">
+                                    <div class="input-group">
+                                        <input type="text" name="searchString" class="form-control" placeholder="Tìm kiếm sản phẩm..." />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit">Tìm</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <form method="get" asp-page="/Product/ProductManager">
+                                    <div class="input-group mb-3">
+                                        <select name="CategoryFilter" class="custom-select">
+                                            <option value="">Chọn danh mục</option>
+                                            @foreach (var category in Model.Categories)
+                                            {
+                                                <option value="@category.Id">@category.Title</option>
+                                            }
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-secondary" type="submit">Lọc</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                       
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                   
                                    
                                     <th>
                                         Title
@@ -57,8 +87,9 @@
                                     <th>
                                         PriceNew
                                     </th>
+                                    <th>Quantity</th>
                                    
-                                    <th style="width:40%;">Action</th>
+                                    <th style="width:30%;">Action</th>
                                 </tr>
                             </thead>
                             @if (Model.Products != null && Model.Products.Count > 0)
@@ -67,7 +98,7 @@
                                 foreach (var product in Model.Products)
                                 {
                                     <tr>
-                                        <td>@product.Id</td>
+                                      
                                         <td>@product.Title</td>
                                         <td>
                                             <img class="icon-image" src="@product.Image" />
@@ -79,10 +110,12 @@
                                         
                                         <td> @string.Format("{0:#,##0}",@product.PriceOld)VND</td>
                                         <td>@string.Format("{0:#,##0}",@product.PriceNew)VND</td>
+                                        <td>@product.Quantity</td>
+
                                         <td>
-                                            <a asp-area="Admin" asp-page="/Product/UpdateProduct" asp-route-id="@product.Id" class="btn btn-warning">Sửa</a>
-                                            <a asp-area="Admin" asp-page="/Product/DeleteProduct" asp-route-id="@product.Id" class="btn btn-danger">Xóa</a>
-                                            <a asp-area="Admin" asp-page="/Product/DetailProduct" asp-route-id="@product.Id" class="btn btn-primary">Chi tiết</a>
+                                            <a asp-area="Admin" asp-page="/Product/UpdateProduct" asp-route-id="@product.Id" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <a asp-area="Admin" asp-page="/Product/DeleteProduct" asp-route-id="@product.Id" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                            <a asp-area="Admin" asp-page="/Product/DetailProduct" asp-route-id="@product.Id" class="btn btn-primary"><i class="fa-regular fa-eye"></i></a>
 
                                         </td>
                                     </tr>

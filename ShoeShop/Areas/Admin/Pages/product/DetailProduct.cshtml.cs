@@ -18,10 +18,15 @@ namespace ShoeShop.Areas.Admin.Pages.product
             _context = context;
         }
 
-      public Product Product { get; set; } = default!; 
+        public Product Product { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (!await CheckAccessAsync())
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
             if (id == null || _context.Products == null)
             {
                 return NotFound();
@@ -32,11 +37,23 @@ namespace ShoeShop.Areas.Admin.Pages.product
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Product = product;
             }
             return Page();
+        }
+
+        private async Task<bool> CheckAccessAsync()
+        {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return false;
+            }
+
+            var user = System.Text.Json.JsonSerializer.Deserialize<User>(userSession);
+            return user?.RoleId == 1;
         }
     }
 }

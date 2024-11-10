@@ -46,27 +46,35 @@
             <div class="row">
                 @foreach (var product in Model.Products)
                 {
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-md-3 py-3">
+                        <div class="card @(product.Quantity == 0 ? "out-of-stock" : "")">
                             <a asp-page="/Product/Details" asp-route-id="@product.Id" style="text-decoration: none; color: inherit;">
                                 <img src="@product.Image" class="card-img-top product-image" alt="@product.Title" />
                                 <div class="card-body">
                                     <p class="card-title">@product.Title</p>
                                     <p><i>@product.Content</i></p>
                                     <p class="card-text price-old">
-                                        <i> Giá Cũ: @string.Format("{0:#,##0}", @product.PriceOld) VND</i>
-
+                                        <i>Old Price: @string.Format("{0:#,##0}", @product.PriceOld) VND</i>
                                     </p>
-                                    <p class="card-text">Giá Mới: @string.Format("{0:#,##0}", @product.PriceNew) VND</p>
-                                    <a asp-page="/cart/Index" asp-page-handler="Add" asp-route-id="@product.Id" style="text-decoration:none;">
-                                        <i class="fa-solid fa-cart-shopping"></i>&nbsp;Mua hàng
-                                    </a>
+                                    <p class="card-text">New Price: @string.Format("{0:#,##0}", @product.PriceNew) VND</p>
+
+                                    @if (product.Quantity > 0)
+                                    {
+                                        <a asp-page="/cart/Index" asp-page-handler="Add" asp-route-id="@product.Id" style="text-decoration:none;">
+                                            <i class="fa-solid fa-cart-shopping"></i>&nbsp;Buy
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="out-of-stock-label">Out of Stock</span>
+                                    }
                                 </div>
                             </a>
                         </div>
                     </div>
                 }
             </div>
+
         }
     </div>
 </div>

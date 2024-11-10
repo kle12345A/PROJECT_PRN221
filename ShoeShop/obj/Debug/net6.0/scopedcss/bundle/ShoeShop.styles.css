@@ -57,10 +57,97 @@ html[b-z7b7am5lsk] {
 .cart span[b-z7b7am5lsk] {
     color: #fd475a;
 }
+.cart-empty-container[b-z7b7am5lsk] {
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
+}
 /* _content/ShoeShop/Pages/cart/Thanks.cshtml.rz.scp.css */
 /*@import url(//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css);
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 */
+/* _content/ShoeShop/Pages/Index.cshtml.rz.scp.css */
+.out-of-stock[b-ggfszezz50] {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.out-of-stock-label[b-ggfszezz50] {
+    color: red;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+/* _content/ShoeShop/Pages/news/Index.cshtml.rz.scp.css */
+.pagination-container[b-qwdrsvjum0] {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+    .pagination-container ul[b-qwdrsvjum0] {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+
+    .pagination-container li[b-qwdrsvjum0] {
+        margin: 0 5px;
+    }
+
+    .pagination-container a[b-qwdrsvjum0],
+    .pagination-container span[b-qwdrsvjum0] {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        color: #007bff;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .pagination-container a:hover[b-qwdrsvjum0],
+        .pagination-container span:hover[b-qwdrsvjum0] {
+            background-color: #007bff;
+            color: white;
+        }
+
+    .pagination-container .active[b-qwdrsvjum0] {
+        background-color: #007bff;
+        color: white;
+        pointer-events: none;
+    }
+
+    .pagination-container .disabled[b-qwdrsvjum0] {
+        color: #ccc;
+        pointer-events: none;
+    }
+
+    .pagination-container .previous[b-qwdrsvjum0],
+    .pagination-container .next[b-qwdrsvjum0] {
+        font-weight: bold;
+    }
+
+        .pagination-container .previous:hover[b-qwdrsvjum0],
+        .pagination-container .next:hover[b-qwdrsvjum0] {
+            background-color: #0056b3;
+        }
+/* _content/ShoeShop/Pages/product/Index.cshtml.rz.scp.css */
+.out-of-stock[b-vmdc7tvpkb] {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.out-of-stock-label[b-vmdc7tvpkb] {
+    color: red;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
 /* _content/ShoeShop/Pages/product/List.cshtml.rz.scp.css */
 body[b-7rutpwifpd] {
     margin: 0;
@@ -96,6 +183,17 @@ h5 a[b-7rutpwifpd] {
     color: black;
     background-color: white;
     border-color: #6c757d;
+}
+.out-of-stock[b-7rutpwifpd] {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.out-of-stock-label[b-7rutpwifpd] {
+    color: red;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
 }
 /* _content/ShoeShop/Pages/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification

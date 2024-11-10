@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "J8nlYwCFU7SDXHk7rHwvRsWP8V6nZPFZVKL0MCWr6Kg=",
+  "Hash": "ueE9GTK2hhXetyzyugkJEFc2uemwGuRI7CEZt66YgCg=",
   "Source": "ShoeShop",
   "BasePath": "_content/ShoeShop",
   "Mode": "Default",
@@ -4140,6 +4140,25 @@
       "OriginalItemSpec": "wwwroot\\Image\\news\\lebron-xxii-1.webp"
     },
     {
+      "Identity": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\news\\mds-mercurial-superfly-1.webp",
+      "SourceId": "ShoeShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\",
+      "BasePath": "_content/ShoeShop",
+      "RelativePath": "Image/news/mds-mercurial-superfly-1.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\news\\mds-mercurial-superfly-1.webp"
+    },
+    {
       "Identity": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\news\\nike-nba-wnba.webp",
       "SourceId": "ShoeShop",
       "SourceType": "Discovered",
@@ -4176,6 +4195,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Image\\news\\nike-zoom-fly-6-8.webp"
+    },
+    {
+      "Identity": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\news\\playground-for-all-1.webp",
+      "SourceId": "ShoeShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\",
+      "BasePath": "_content/ShoeShop",
+      "RelativePath": "Image/news/playground-for-all-1.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\news\\playground-for-all-1.webp"
     },
     {
       "Identity": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\news\\tokyo-coach-the-dream.webp",
@@ -4311,6 +4349,25 @@
       "OriginalItemSpec": "wwwroot\\Image\\product\\NIKE+SB+ZOOM+BLAZER+LOW+PRO+GT.png"
     },
     {
+      "Identity": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\product\\W+AIR+ZOOM+PEGASUS+41.png",
+      "SourceId": "ShoeShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\",
+      "BasePath": "_content/ShoeShop",
+      "RelativePath": "Image/product/W+AIR+ZOOM+PEGASUS+41.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\product\\W+AIR+ZOOM+PEGASUS+41.png"
+    },
+    {
       "Identity": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\product\\WMNS+AIR+FORCE+1+'07.png",
       "SourceId": "ShoeShop",
       "SourceType": "Discovered",
@@ -4328,6 +4385,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Image\\product\\WMNS+AIR+FORCE+1+'07.png"
+    },
+    {
+      "Identity": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\product\\ZOOM+FLY+6.png",
+      "SourceId": "ShoeShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\",
+      "BasePath": "_content/ShoeShop",
+      "RelativePath": "Image/product/ZOOM+FLY+6.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\product\\ZOOM+FLY+6.png"
     },
     {
       "Identity": "C:\\Users\\Asus\\source\\repos\\Project_Prn212\\ShoeShop\\wwwroot\\Image\\user\\lebron-xxii-1.webp",

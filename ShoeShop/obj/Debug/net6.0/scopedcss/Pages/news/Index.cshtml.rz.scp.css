@@ -1,0 +1,55 @@
+.pagination-container[b-qwdrsvjum0] {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+    .pagination-container ul[b-qwdrsvjum0] {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+
+    .pagination-container li[b-qwdrsvjum0] {
+        margin: 0 5px;
+    }
+
+    .pagination-container a[b-qwdrsvjum0],
+    .pagination-container span[b-qwdrsvjum0] {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        color: #007bff;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .pagination-container a:hover[b-qwdrsvjum0],
+        .pagination-container span:hover[b-qwdrsvjum0] {
+            background-color: #007bff;
+            color: white;
+        }
+
+    .pagination-container .active[b-qwdrsvjum0] {
+        background-color: #007bff;
+        color: white;
+        pointer-events: none;
+    }
+
+    .pagination-container .disabled[b-qwdrsvjum0] {
+        color: #ccc;
+        pointer-events: none;
+    }
+
+    .pagination-container .previous[b-qwdrsvjum0],
+    .pagination-container .next[b-qwdrsvjum0] {
+        font-weight: bold;
+    }
+
+        .pagination-container .previous:hover[b-qwdrsvjum0],
+        .pagination-container .next:hover[b-qwdrsvjum0] {
+            background-color: #0056b3;
+        }

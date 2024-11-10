@@ -16,6 +16,20 @@
                 {
                     <div class="alert alert-danger">@Model.ErrorMessage</div>
                 }
+                
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @TempData["ErrorMessage"]
+                    </div>
+                }
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["Message"]
+                    </div>
+                }
+
                 <div class="form-floating mb-3">
                     <input asp-for="Users.Email" class="form-control" placeholder="name@example.com" required />
                     <label asp-for="Users.Email">Email</label>
@@ -27,6 +41,7 @@
                     <span class="text-danger" asp-validation-for="Users.Password"></span>
                 </div>
                 <a asp-page="/authentication/Register">Register here!!!</a>
+                <a asp-page="/authentication/ForgotPassword">Forgot Password?</a>
                 <button type="submit" class="w-100 btn btn-lg btn-primary">Login</button>
             </form>
         </div>
@@ -35,7 +50,10 @@
             <section>
                 <h3>Use another service to login.</h3>
                 <hr />
-                <button class="btn btn-primary mb-2">Log in with Google</button>
+                <button type="button" class="btn btn-primary mb-2" onclick="window.location.href='@Url.Page("/authentication/Login", "Login")'">
+                    Log in with Google
+                </button>
+
                 <button class="btn btn-primary mb-2">Log in with Facebook</button>
             </section>
         </div>

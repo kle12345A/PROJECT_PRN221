@@ -16,7 +16,7 @@
             <img src="~/Image/banner/banner2d.jpg" class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
-            <img src="~/Image/banner/banner3.jpg" class="d-block w-100" alt="...">
+            <img src="~/Image/banner/banner.jpg" class="d-block w-100" alt="...">
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -31,7 +31,7 @@
 <div class="product-most">
 
     <div class="text-center text-head">
-    <h3>Sản Phẩm Nổi Bật</h3>
+        <h3>Featured Products</h3>
 </div>
     <div id="multiItemCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -41,28 +41,36 @@
                     @foreach (var product in products)
                     {
                         <div class="col-md-3">
-                            <div class="card">
-                                <img src="@product.Image" class="card-img-top product-image" alt="Product 1">
-                                <div class="card-body">
-                                    <h5 class="card-title">@product.Title</h5>
-                                    <p><i>@product.Content</i></p>
-                                    <p class="card-text price-old">
-                                        <i> Giá Cũ: @string.Format("{0:#,##0}", @product.PriceOld) VND</i>
-                                       
-                                    </p>
+                            <div class="card @(product.Quantity == 0 ? "out-of-stock" : "")">
+                                <a asp-page="/Product/Details" asp-route-id="@product.Id" style="text-decoration: none; color: inherit;">
 
-                                    <p class="card-text">Giá Mới: @string.Format("{0:#,##0}",@product.PriceNew) VND</p>
-                                    <a asp-page="/cart/Index" asp-page-handler="Add" asp-route-id="@product.Id" style="text-decoration:none;">
-                                        <i class="fa-solid fa-cart-shopping"></i>&nbsp;Mua hàng
-                                    </a>
-                                    
-                                </div>
+                                    <img src="@product.Image" class="card-img-top product-image" alt="Product Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@product.Title</h5>
+                                        <p><i>@product.Content</i></p>
+                                        <p class="card-text price-old">
+                                            <i>Old Price: @string.Format("{0:#,##0}", @product.PriceNew) VND</i>
+                                        </p>
+                                        <p class="card-text">New Price: @string.Format("{0:#,##0}", @product.PriceNew) VND</p>
+
+                                        @if (product.Quantity > 0)
+                                        {
+                                            <a asp-page="/cart/Index" asp-page-handler="Add" asp-route-id="@product.Id" style="text-decoration:none;">
+                                                <i class="fa-solid fa-cart-shopping"></i>&nbsp;Buy
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="out-of-stock-label">Out of Stock</span>
+                                        }
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     }
-                    
                 </div>
             </div>
+
         </div>
 
         <!-- Carousel Controls -->
@@ -79,7 +87,7 @@
 
 <<div class="about-section">
     <div class="text-center text-head ">
-        <h3>Về Chúng Tôi</h3>
+        <h3>About Us</h3>
     </div>
     <div class="row">
         <div class="col-md-6">

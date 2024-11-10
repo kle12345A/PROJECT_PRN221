@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
 
 namespace ShoeShop.Areas.Admin.Pages.news
 {
@@ -29,6 +30,12 @@ namespace ShoeShop.Areas.Admin.Pages.news
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession) || !JsonSerializer.Deserialize<User>(userSession).RoleId.Equals(1))
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -68,22 +75,20 @@ namespace ShoeShop.Areas.Admin.Pages.news
                     await ImageFile.CopyToAsync(stream);
                 }
 
-                // Lưu đường dẫn ảnh vào thuộc tính của News
                 News.Image = $"/Image/news/{fileName}";
             }
-			else
-			{
-				News.Image = Request.Form["CurrentImage"];
-			}
-			var userJson = HttpContext.Session.GetString("UserSession");
-            if (userJson != null)
+            else
             {
-                var userElement = System.Text.Json.JsonDocument.Parse(userJson).RootElement;
+                News.Image = Request.Form["CurrentImage"];
+            }
 
-                // Truy xuất giá trị của 'Name' từ JsonElement
-                var userName = userElement.GetProperty("Name").GetString();
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (userSession != null)
+            {
+                var userName = JsonSerializer.Deserialize<User>(userSession)?.Name;
                 News.AdminUpdate = userName;
             }
+
             News.UpdateDate = DateTime.Now;
 
             try

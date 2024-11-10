@@ -20,6 +20,8 @@ namespace DataAccess.Models
         public int? RoleId { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime? LastLogin { get; set; }
 
         public virtual Role? Role { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }

@@ -17,17 +17,21 @@ namespace ShoeShop.Areas.Admin.Pages.order
             _context = context;
         }
 
-        // Danh sách các sản phẩm trong cùng đơn hàng
         public List<dynamic> OrderDetails { get; set; } = new List<dynamic>();
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+       
+            if (!await CheckAccessAsync())
+            {
+                return RedirectToPage("/AccessDenied"); 
+            }
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            // Truy vấn để lấy tất cả sản phẩm thuộc cùng đơn hàng
             var orderDetails = await (from order in _context.Orders
                                       join detail in _context.OrderDetails on order.Id equals detail.OrderId
                                       join product in _context.Products on detail.ProductId equals product.Id
@@ -36,7 +40,7 @@ namespace ShoeShop.Areas.Admin.Pages.order
                                       {
                                           OrderId = order.Id,
                                           OrderDate = order.UpdateDate,
-                                          NameC = order.Name,
+                                          CustomerName = order.Name,
                                           Email = order.Email,
                                           Address = order.Address,
                                           ProductId = product.Id,
@@ -47,13 +51,25 @@ namespace ShoeShop.Areas.Admin.Pages.order
                                           Status = order.Status
                                       }).ToListAsync();
 
-            if (orderDetails == null || orderDetails.Count == 0)
+            if (orderDetails == null || !orderDetails.Any())
             {
                 return NotFound();
             }
 
             OrderDetails = orderDetails.Select(o => (dynamic)o).ToList();
             return Page();
+        }
+
+        private async Task<bool> CheckAccessAsync()
+        {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession))
+            {
+                return false;
+            }
+
+            var user = System.Text.Json.JsonSerializer.Deserialize<User>(userSession);
+            return user?.RoleId == 1; 
         }
     }
 }

@@ -1,41 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using DataAccess.Models;
 using BusinessObject.news;
+using DataAccess.Models;
+using System.Text.Json;
 
 namespace ShoeShop.Areas.Admin.Pages.news
 {
     public class DeleteModel : PageModel
     {
-        private readonly INewsService _newService;
+        private readonly INewsService _newsService;
 
         public DeleteModel(INewsService newsService)
         {
-             _newService = newsService;
+            _newsService = newsService;
         }
 
         [BindProperty]
-      public News News { get; set; } = default!;
+        public News News { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _newService == null)
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession) || !JsonSerializer.Deserialize<User>(userSession).RoleId.Equals(1))
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
+            if (id == null || _newsService == null)
             {
                 return NotFound();
             }
 
-            var news = await _newService.GetByIdAsync(id.Value);
+            var news = await _newsService.GetByIdAsync(id.Value);
 
             if (news == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 News = news;
             }
@@ -44,17 +48,22 @@ namespace ShoeShop.Areas.Admin.Pages.news
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _newService == null)
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (string.IsNullOrEmpty(userSession) || !JsonSerializer.Deserialize<User>(userSession).RoleId.Equals(1))
+            {
+                return RedirectToPage("/AccessDenied");
+            }
+
+            if (id == null || _newsService == null)
             {
                 return NotFound();
             }
-            var news = await _newService.GetByIdAsync(id.Value);
+
+            var news = await _newsService.GetByIdAsync(id.Value);
 
             if (news != null)
             {
-                
-              
-                await _newService.DeleteAsync(id.Value);
+                await _newsService.DeleteAsync(id.Value);
             }
 
             return RedirectToPage("./Index");
